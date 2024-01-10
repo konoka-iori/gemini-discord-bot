@@ -26,7 +26,7 @@ class jsonLoad:
         with open(self.__json_file, "r", encoding="utf-8") as setting_file:
             setting_json = json.load(setting_file)
             try:
-                return setting_json[command]["embed"]
+                return json.loads(setting_json[command]["embed"])
             except KeyError:
                 return None
         
