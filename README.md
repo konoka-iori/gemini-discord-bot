@@ -13,6 +13,8 @@ Gemini APIを使ったDiscordのチャットボット作ってみたいよとい
 
 - `main`: 動作確認済みのブランチです。
 - `develop`: 開発用のブランチです。こちらは動作確認が行われていません。
+- `add/`: New Featureブランチです。新機能などの追加に使用します。`develop` から派生。
+- `improvement/`: Improvement用ブランチです。既存の機能の改善に使用します。`develop` から派生。
 
 # 注意事項
 
