@@ -1,4 +1,5 @@
 from genericpath import isdir, isfile
+from datetime import datetime
 import json
 
 class jsonLoad:
@@ -25,8 +26,17 @@ class jsonLoad:
     def get_command_embed(self, command:str) -> dict:
         with open(self.__json_file, "r", encoding="utf-8") as setting_file:
             setting_json = json.load(setting_file)
+            embed = json.loads(setting_json[command]["embed"])
+            if 'color' in embed:
+                embed['color'] = int(embed['color'].lstrip('#'), 16)
+            else:
+                pass
+            if 'timestamp' in embed:
+                embed['timestamp'] = datetime.fromtimestamp(int(embed['timestamp'])).isoformat()
+            else:
+                pass
             try:
-                return json.loads(setting_json[command]["embed"])
+                return embed
             except KeyError:
                 return None
         
@@ -41,5 +51,6 @@ class jsonLoad:
 
 if __name__ == "__main__":
     data_loader = jsonLoad()
-    print(data_loader.get_command_description("about"))
-    print(data_loader.get_command_value("about"))
+    about_embed = data_loader.get_command_embed("about")
+    print(about_embed["timestamp"])
+    print(type(about_embed["timestamp"]))
