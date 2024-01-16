@@ -13,3 +13,8 @@ class Chat:
             return str(chat.send_message(user_input).text)
         except Exception as e:
             return f"エラーが発生しました。以下の内容をコピペして管理者までお知らせください。\n```{e}```" # TODO: JSONに移すか検討。今はとりあえずこれで。
+        
+if __name__ == "__main__":
+    from os import getenv
+    chat = Chat(getenv("GEMINI_API_KEY"))
+    print(chat.get_response(input(">>> ")))
