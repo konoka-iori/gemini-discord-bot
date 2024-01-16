@@ -2,7 +2,6 @@ import google.generativeai as gemini
 
 class Chat:
     def __init__(self, token:str) -> None:
-        self.chatbot = gemini.Chatbot(token)
         self.token = token
     
     def get_response(self, message:str) -> str:
