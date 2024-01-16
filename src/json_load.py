@@ -27,12 +27,12 @@ class jsonLoad:
         with open(self.__json_file, "r", encoding="utf-8") as setting_file:
             setting_json = json.load(setting_file)
             embed = json.loads(setting_json[command]["embed"])
-            if 'color' in embed:
-                embed['color'] = int(embed['color'].lstrip('#'), 16)
+            if "color" in embed:
+                embed["color"] = int(embed["color"].lstrip("#"), 16)
             else:
                 pass
-            if 'timestamp' in embed:
-                embed['timestamp'] = datetime.fromtimestamp(int(embed['timestamp'])).isoformat()
+            if "timestamp" in embed:
+                embed["timestamp"] = datetime.fromtimestamp(int(embed["timestamp"])).isoformat()
             else:
                 pass
             try:
