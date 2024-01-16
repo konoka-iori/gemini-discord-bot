@@ -7,7 +7,7 @@ import json_load
 
 DISCORD_BOT_TOKEN = getenv("DISCORD_BOT_TOKEN")
 GEMINI_API_KEY = getenv("GEMINI_API_KEY")
-DISCORD_SERVER_ID = getenv("DISCORD_SERVER_ID")
+DISCORD_SERVER_ID = discord.Object(getenv("DISCORD_SERVER_ID"))
 
 command_data = json_load.jsonLoad()
 chat_data = chat.Chat(GEMINI_API_KEY)
