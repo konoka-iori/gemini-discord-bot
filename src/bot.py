@@ -30,6 +30,13 @@ async def chat(ctx:discord.Interaction, message:str) -> None:
         await ctx.response.defer(thinking=True)
         await ctx.followup.send(chat_data.get_response(message))
 
+# BUG:ctx.message.reference.resolved.contentがNoneになる
+# @tree.command(name="reply", description=command_data.get_command_description("reply"), guild=DISCORD_SERVER_ID)
+# async def reply(ctx:discord.Interaction) -> None:
+#     async with ctx.channel.typing():
+#         await ctx.response.defer(thinking=True)
+#         await ctx.followup.send(chat_data.get_response(ctx.message.reference.resolved.content))
+
 
 @client.event
 async def on_ready() -> None:

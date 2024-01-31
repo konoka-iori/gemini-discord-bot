@@ -8,5 +8,10 @@
         "description": "Gemini-Proと会話できます。",
         "value": "",
         "embed": ""
+    },
+    "reply": {
+        "description": "すでにあるメッセージに対してGemini-Proが回答します。",
+        "value": "",
+        "embed": ""
     }
 }
