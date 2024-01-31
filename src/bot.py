@@ -28,7 +28,9 @@ async def about(ctx:discord.Interaction) -> None:
 async def chat(ctx:discord.Interaction, message:str) -> None:
     async with ctx.channel.typing():
         await ctx.response.defer(thinking=True)
-        await ctx.followup.send(chat_data.get_response(message))
+        embed = discord.Embed(description=chat_data.get_response(message))
+        embed.add_field(name="プロンプト", value=f"{ctx.user.mention}:\n\n{message}")
+        await ctx.followup.send(embed=embed)
 
 
 @client.event
