@@ -22,7 +22,7 @@ async def about(ctx:discord.Interaction) -> None:
     async with ctx.channel.typing():
         await ctx.response.defer(thinking=True)
         embed = discord.Embed.from_dict(command_data.get_command_embed("about"))
-        await ctx.response.send_message(embed=embed)
+        await ctx.followup.send(embed=embed)
 
 @tree.command(name="chat", description=command_data.get_command_description("chat"), guild=DISCORD_SERVER_ID)
 async def chat(ctx:discord.Interaction, message:str) -> None:
