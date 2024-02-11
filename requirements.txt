@@ -1,2 +1,6 @@
 discord.py
 google.generativeai
+
+bs4
+requests
+google-api-python-client
