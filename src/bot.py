@@ -30,7 +30,7 @@ async def chat(ctx:discord.Interaction, message:str) -> None:
         await ctx.response.defer(thinking=True)
         embed = discord.Embed(description=message)
         embed.set_author(name=ctx.user.name, icon_url=ctx.user.avatar.url)
-        embed.add_field(name="Gemini-Proの回答", value=chat_data.get_response(message))
+        embed.add_field(name="Gemini-Proの回答", value=chat_data.get_response(message)[:1024])
         await ctx.followup.send(embed=embed)
 
 @client.event
