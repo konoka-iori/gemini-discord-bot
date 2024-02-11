@@ -24,6 +24,9 @@ Gemini APIを使ったDiscordのチャットボット作ってみたいよとい
 
 このBOTを正常に動作させるには以下の権限が必須です。
 
+SCOPES: bot
+BOT PERMISSIONS:
+
 - Send Messages
 - Send Messages in Threads (スレッド内でもBOTを利用したい場合は必須)
 - Embed Links
