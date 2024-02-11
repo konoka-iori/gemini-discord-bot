@@ -6,6 +6,8 @@ name = "pypi"
 [packages]
 "discord.py" = "*"
 "google.generativeai" = "*"
+google-api-python-client = "*"
+bs4 = "*"
 
 [dev-packages]
 
