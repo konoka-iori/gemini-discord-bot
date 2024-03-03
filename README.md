@@ -7,7 +7,8 @@ Gemini APIを使ったDiscordのチャットボット作ってみたいよとい
 # コマンド一覧(機能一覧)
 
 - `/about`: BOTの説明を表示します。
-- `/chat`: Geminiとチャットができます。一問一答方式で、会話履歴はBOT側で保存されません。使用されるモデルは `gemini-pro` です。
+- `/chat`: Geminiとチャットができます。一問一答方式で、会話履歴はBOT側で保存されません。
+- `Gemini replies to message`: すでに送信されているメッセージを選択してこのコマンドを使用すると、選択されたメッセージにBOTが返信します。一問一答形式で、会話はBOT側で保存されません。
 
 # 使い方
 
@@ -25,6 +26,7 @@ Gemini APIを使ったDiscordのチャットボット作ってみたいよとい
 このBOTを正常に動作させるには以下の権限が必須です。
 
 SCOPES: bot
+
 BOT PERMISSIONS:
 
 - Send Messages
