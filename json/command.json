@@ -2,10 +2,15 @@
     "about": {
         "description": "BOTの説明を表示します。",
         "value": "",
-        "embed": "{\"title\":\"Gemini Discord BOT\",\"url\":\"https://github.com/konoka-iori/gemini-discord-bot\",\"description\":\"これは簡易的なDiscordチャットボットです。Geminiとの会話機能が実装されています。\\nこのBOTのソースコードは[GitHub](https://github.com/konoka-iori/gemini-discord-bot)で公開されています。\\n不具合報告、機能追加要望などはIssueください。PullRequestも歓迎です！\",\"fields\":[{\"name\":\"`/about`\",\"value\":\"BOTの説明を表示します。\\nそう、このメッセージのことです。\"},{\"name\":\"`/chat`\",\"value\":\"Geminiとチャットができます。一問一答方式で、会話履歴はBOT側に保存されません。\\n使用されるモデルは`gemini-pro`です。\\n\\nGeminiAPIを利用しています。Geminiの概要、利用規約などについては公式サイト等を確認してください。\\n会話内容はGeminiAPIに送信され、Gemini側で保存されて学習等に利用される可能性があります。詳しくはGeminiAPIの公式サイト等を確認してください。\"}],\"color\":\"#00b0f4\",\"footer\":{\"text\":\"Konoka-Iori\",\"icon_url\":\"https://avatars.githubusercontent.com/u/70302978\"},\"timestamp\":1707663600}"
+        "embed": "{\"title\":\"Gemini Discord BOT\",\"url\":\"https://github.com/konoka-iori/gemini-discord-bot\",\"description\":\"これは簡易的なDiscordチャットボットです。Geminiとの会話機能が実装されています。\\nこのBOTのソースコードは[GitHub](https://github.com/konoka-iori/gemini-discord-bot)で公開されています。\\n不具合報告、機能追加要望などはIssueください。Pull Requestも歓迎です！\",\"fields\":[{\"name\":\"`/about`\",\"value\":\"BOTの説明を表示します。\\nそう、このメッセージのことです。\"},{\"name\":\"`/chat`\",\"value\":\"Geminiとチャットができます。一問一答方式で、会話履歴はBOT側に保存されません。\\n使用されるモデルは `gemini-pro` です。\\n\\nGemini APIを利用しています。Geminiの概要、利用規約などについては公式サイト等を確認してください。\\n会話内容はGemini APIに送信され、Gemini側で保存されて学習等に利用される可能性があります。詳しくはGemini APIの公式サイト等を確認してください。\"}],\"color\":\"#00b0f4\",\"footer\":{\"text\":\"Konoka-Iori\",\"icon_url\":\"https://avatars.githubusercontent.com/u/70302978\"},\"timestamp\":1707663600}"
     },
     "chat": {
         "description": "Gemini-Proと会話できます。",
+        "value": "",
+        "embed": ""
+    },
+    "reply": {
+        "description": "すでにあるメッセージに対してGemini-Proが回答します。",
         "value": "",
         "embed": ""
     }
