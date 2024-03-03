@@ -22,12 +22,13 @@ async def about(ctx:discord.Interaction) -> None:
     async with ctx.channel.typing():
         await ctx.response.defer(thinking=True)
         embed = discord.Embed.from_dict(command_data.get_command_embed("about"))
-        await ctx.response.send_message(embed=embed)
+        await ctx.followup.send(embed=embed)
 
 @tree.command(name="chat", description=command_data.get_command_description("chat"), guild=DISCORD_SERVER_ID)
 async def chat(ctx:discord.Interaction, message:str) -> None:
     async with ctx.channel.typing():
         await ctx.response.defer(thinking=True)
+<<<<<<< HEAD
         await ctx.followup.send(chat_data.get_response(message))
 
 # BUG:ctx.message.reference.resolved.contentがNoneになる
@@ -37,6 +38,12 @@ async def chat(ctx:discord.Interaction, message:str) -> None:
 #         await ctx.response.defer(thinking=True)
 #         await ctx.followup.send(chat_data.get_response(ctx.message.reference.resolved.content))
 
+=======
+        embed = discord.Embed(description=message)
+        embed.set_author(name=ctx.user.name, icon_url=ctx.user.avatar.url)
+        embed.add_field(name="Gemini-Proの回答", value=chat_data.get_response(message)[:1024])
+        await ctx.followup.send(embed=embed)
+>>>>>>> 266fe02b63188aba1a14e18fdbb70f05606d1974
 
 @client.event
 async def on_ready() -> None:

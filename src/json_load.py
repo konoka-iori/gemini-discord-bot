@@ -32,7 +32,7 @@ class jsonLoad:
             else:
                 pass
             if "timestamp" in embed:
-                embed["timestamp"] = datetime.fromtimestamp(int(embed["timestamp"])).isoformat()
+                embed["timestamp"] = datetime.utcfromtimestamp(int(embed["timestamp"])).isoformat()
             else:
                 pass
             try:
