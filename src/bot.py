@@ -33,7 +33,7 @@ async def chat(ctx:discord.Interaction, message:str) -> None:
         embed.add_field(name="Gemini-Proの回答", value=chat_data.get_response(message)[:1024])
         await ctx.followup.send(embed=embed)
 
-@tree.context_menu(name="reply", guild=DISCORD_SERVER_ID)
+@tree.context_menu(name="Gemini replies to message", guild=DISCORD_SERVER_ID)
 async def reply(ctx:discord.Interaction, message:discord.Message) -> None:
     async with ctx.channel.typing():
         await ctx.response.defer(thinking=True)
