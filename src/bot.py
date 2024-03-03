@@ -33,6 +33,15 @@ async def chat(ctx:discord.Interaction, message:str) -> None:
         embed.add_field(name="Gemini-Proの回答", value=chat_data.get_response(message)[:1024])
         await ctx.followup.send(embed=embed)
 
+@tree.context_menu(name="Gemini replies to message", guild=DISCORD_SERVER_ID)
+async def reply(ctx:discord.Interaction, message:discord.Message) -> None:
+    async with ctx.channel.typing():
+        await ctx.response.defer(thinking=True)
+        embed = discord.Embed(description=message.content)
+        embed.set_author(name=ctx.user.name, icon_url=ctx.user.avatar.url)
+        embed.add_field(name="Gemini-Proの回答", value=chat_data.get_response(message.content)[:1024])
+        await ctx.followup.send(embed=embed)
+
 @client.event
 async def on_ready() -> None:
     print("LOGGED IN")
