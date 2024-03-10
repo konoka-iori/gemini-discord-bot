@@ -14,7 +14,18 @@ class jsonLoad:
             elif not isfile(self.__json_file):
                 raise FileNotFoundError("JSONファイルがありません")
         except IsADirectoryError as e: print(e)
-        
+
+    def __embed_formater(self, embed:dict) -> dict:
+        if "color" in embed:
+            embed["color"] = int(embed["color"].lstrip("#"), 16)
+        else:
+            pass
+        if "timestamp" in embed:
+            embed["timestamp"] = datetime.utcfromtimestamp(int(embed["timestamp"])).isoformat()
+        else:
+            pass
+        return embed
+ 
     def get_command_description(self, command:str) -> str:
         with open(self.__json_file, "r", encoding="utf-8") as setting_file:
             setting_json = json.load(setting_file)
@@ -22,24 +33,17 @@ class jsonLoad:
                 return setting_json[command]["description"]
             except KeyError:
                 return None
-            
+        
     def get_command_embed(self, command:str) -> dict:
         with open(self.__json_file, "r", encoding="utf-8") as setting_file:
             setting_json = json.load(setting_file)
-            embed = json.loads(setting_json[command]["embed"])
-            if "color" in embed:
-                embed["color"] = int(embed["color"].lstrip("#"), 16)
-            else:
-                pass
-            if "timestamp" in embed:
-                embed["timestamp"] = datetime.utcfromtimestamp(int(embed["timestamp"])).isoformat()
-            else:
-                pass
-            try:
-                return embed
-            except KeyError:
-                return None
-        
+            embed_file_path = setting_json[command]["embed"]
+            with open(embed_file_path, "r", encoding="utf-8") as embed_file:
+                try:
+                    return self.__embed_formater(json.load(embed_file))
+                except KeyError:
+                    return None
+
     def get_command_value(self, command:str) -> dict:
         with open(self.__json_file, "r", encoding="utf-8") as setting_file:
             setting_json = json.load(setting_file)
