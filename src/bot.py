@@ -17,14 +17,14 @@ client = discord.Client(intents=discord.Intents.all())
 tree = discord.app_commands.CommandTree(client)
 
 
-@tree.command(name="about", description=command_data.get_command_description("about"), guild=DISCORD_SERVER_ID)
+@tree.command(name="about", description=command_data.get_command_description("about"))
 async def about(ctx:discord.Interaction) -> None:
     async with ctx.channel.typing():
         await ctx.response.defer(thinking=True)
         embed = discord.Embed.from_dict(command_data.get_command_embed("about"))
         await ctx.followup.send(embed=embed)
 
-@tree.command(name="chat", description=command_data.get_command_description("chat"), guild=DISCORD_SERVER_ID)
+@tree.command(name="chat", description=command_data.get_command_description("chat"))
 async def chat(ctx:discord.Interaction, message:str) -> None:
     async with ctx.channel.typing():
         await ctx.response.defer(thinking=True)
@@ -33,7 +33,7 @@ async def chat(ctx:discord.Interaction, message:str) -> None:
         embed.add_field(name="Gemini-Proの回答", value=chat_data.get_response(message)[:1024])
         await ctx.followup.send(embed=embed)
 
-@tree.context_menu(name="Gemini replies to message", guild=DISCORD_SERVER_ID)
+@tree.context_menu(name="Gemini replies to message")
 async def reply(ctx:discord.Interaction, message:discord.Message) -> None:
     async with ctx.channel.typing():
         await ctx.response.defer(thinking=True)
@@ -45,6 +45,7 @@ async def reply(ctx:discord.Interaction, message:discord.Message) -> None:
 @client.event
 async def on_ready() -> None:
     print("LOGGED IN")
+    tree.copy_global_to(guild=DISCORD_SERVER_ID)
     await tree.sync(guild=DISCORD_SERVER_ID) #コマンド同期
     print("COMMAND SYNCED")
 
