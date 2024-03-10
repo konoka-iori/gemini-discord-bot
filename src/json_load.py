@@ -25,7 +25,7 @@ class jsonLoad:
         else:
             pass
         return embed
-        
+ 
     def get_command_description(self, command:str) -> str:
         with open(self.__json_file, "r", encoding="utf-8") as setting_file:
             setting_json = json.load(setting_file)
@@ -33,7 +33,7 @@ class jsonLoad:
                 return setting_json[command]["description"]
             except KeyError:
                 return None
-            
+        
     def get_command_embed(self, command:str) -> dict:
         with open(self.__json_file, "r", encoding="utf-8") as setting_file:
             setting_json = json.load(setting_file)
@@ -43,7 +43,7 @@ class jsonLoad:
                     return self.__embed_formater(json.load(embed_file))
                 except KeyError:
                     return None
-        
+
     def get_command_value(self, command:str) -> dict:
         with open(self.__json_file, "r", encoding="utf-8") as setting_file:
             setting_json = json.load(setting_file)

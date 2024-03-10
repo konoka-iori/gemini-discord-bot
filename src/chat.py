@@ -3,7 +3,7 @@ import google.generativeai as gemini
 class Chat:
     def __init__(self, token:str) -> None:
         self.token = token
-    
+
     def get_response(self, message:str) -> str:
         try:
             gemini.configure(api_key=self.token)
