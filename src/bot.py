@@ -44,11 +44,11 @@ async def reply(ctx:discord.Interaction, message:discord.Message) -> None:
 
 @client.event
 async def on_ready() -> None:
-    print("LOGGED IN")
+    print(f"LOGGED IN: {client.user.name}")
     tree.copy_global_to(guild=DISCORD_SERVER_ID)
     await tree.sync(guild=DISCORD_SERVER_ID) #コマンド同期
     print("COMMAND SYNCED")
-
+    await client.change_presence(status=discord.Status.online, activity=discord.CustomActivity(name="Gemini 1.5 Proを実行中"))
 
 # Discordに接続
 client.run(DISCORD_BOT_TOKEN)
