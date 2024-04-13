@@ -19,14 +19,14 @@ tree = discord.app_commands.CommandTree(client)
 
 
 @tree.command(name="about", description=command_data.get_command_description("about"))
-async def about(ctx:discord.Interaction) -> None:
+async def command_about(ctx:discord.Interaction) -> None:
     async with ctx.channel.typing():
         await ctx.response.defer(thinking=True)
         embed = discord.Embed.from_dict(command_data.get_command_embed("about"))
         await ctx.followup.send(embed=embed)
 
 @tree.command(name="chat", description=command_data.get_command_description("chat"))
-async def chat(ctx:discord.Interaction, message:str) -> None:
+async def command_chat(ctx:discord.Interaction, message:str) -> None:
     async with ctx.channel.typing():
         await ctx.response.defer(thinking=True)
         user_embed = discord.Embed(description=message[:2048], color=discord.Color.green())
@@ -36,7 +36,7 @@ async def chat(ctx:discord.Interaction, message:str) -> None:
         await ctx.followup.send(embeds=[user_embed, response_embed])
 
 @tree.context_menu(name="Gemini replies to message")
-async def reply(ctx:discord.Interaction, message:discord.Message) -> None:
+async def command_reply(ctx:discord.Interaction, message:discord.Message) -> None:
     async with ctx.channel.typing():
         await ctx.response.defer(thinking=True)
         user_embed = discord.Embed(description=message[:2048], color=discord.Color.green())
