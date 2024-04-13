@@ -10,7 +10,8 @@ GEMINI_API_KEY = getenv("GEMINI_API_KEY")
 DISCORD_SERVER_ID = discord.Object(getenv("DISCORD_SERVER_ID"))
 
 command_data = json_load.jsonLoad()
-chat_data = chat.Chat(GEMINI_API_KEY)
+model_data = json_load.ModelLoad()
+chat_data = chat.Chat(token=GEMINI_API_KEY, model=model_data.get_model_name())
 
 
 client = discord.Client(intents=discord.Intents.all())
@@ -28,19 +29,21 @@ async def about(ctx:discord.Interaction) -> None:
 async def chat(ctx:discord.Interaction, message:str) -> None:
     async with ctx.channel.typing():
         await ctx.response.defer(thinking=True)
-        embed = discord.Embed(description=message)
-        embed.set_author(name=ctx.user.name, icon_url=ctx.user.avatar.url)
-        embed.add_field(name="Gemini-Proの回答", value=chat_data.get_response(message)[:1024])
-        await ctx.followup.send(embed=embed)
+        user_embed = discord.Embed(description=message[:2048], color=discord.Color.green())
+        user_embed.set_author(name=ctx.user.name, icon_url=ctx.user.avatar.url)
+        response_embed = discord.Embed(description=chat_data.get_response(message)[:2048], color=discord.Color.blue())
+        response_embed.set_author(name=model_data.get_name(), icon_url=model_data.get_icon())
+        await ctx.followup.send(embeds=[user_embed, response_embed])
 
 @tree.context_menu(name="Gemini replies to message")
 async def reply(ctx:discord.Interaction, message:discord.Message) -> None:
     async with ctx.channel.typing():
         await ctx.response.defer(thinking=True)
-        embed = discord.Embed(description=message.content)
-        embed.set_author(name=ctx.user.name, icon_url=ctx.user.avatar.url)
-        embed.add_field(name="Gemini-Proの回答", value=chat_data.get_response(message.content)[:1024])
-        await ctx.followup.send(embed=embed)
+        user_embed = discord.Embed(description=message[:2048], color=discord.Color.green())
+        user_embed.set_author(name=ctx.user.name, icon_url=ctx.user.avatar.url)
+        response_embed = discord.Embed(description=chat_data.get_response(message)[:2048], color=discord.Color.blue())
+        response_embed.set_author(name=model_data.get_name, icon_url=model_data.get_icon)
+        await ctx.followup.send(embeds=[user_embed, response_embed])
 
 @client.event
 async def on_ready() -> None:
