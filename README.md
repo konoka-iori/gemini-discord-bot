@@ -61,8 +61,27 @@ BOT PERMISSIONS:
 
 # バージョン履歴
 
-- `1.0`: 初版リリース（ `/about` と `/chat` の追加）
-- `1.1`: #3 に対応（ユーザーが送信した内容を返信に表示するよう改善）
-- `1.2`: Pythonのバージョンを3.9から3.11に変更し、不具合修正（#9）
-- `1.3`: ドキュメントの拡充（#6）、不具合修正（#11）、`/about` のEmbedを変更、EmbedのタイムスタンプをUTC時間に変換し、より正確なタイムスタンプを表示できるように対応
-- `2.0`: 機能追加（#2）とドキュメント修正
+- `1.0`:
+  - 初版リリース（ `/about` と `/chat` の追加）
+- `1.1`:
+  - ユーザーが送信した内容を返信に表示するよう改善 [#3](https://github.com/konoka-iori/gemini-discord-bot/issues/2)
+- `1.2`:
+  - Pythonのバージョンを3.9から3.11に変更
+  - 不具合修正 [#9](https://github.com/konoka-iori/gemini-discord-bot/issues/9)
+- `1.3`:
+  - ドキュメントの拡充 [#6](https://github.com/konoka-iori/gemini-discord-bot/issues/6)
+  - 不具合修正 [#11](https://github.com/konoka-iori/gemini-discord-bot/issues/11)
+  - `/about` のEmbedを変更
+  - EmbedのタイムスタンプをUTC時間に変換し、より正確なタイムスタンプを表示できるように対応
+- `2.0`:
+  - 機能追加 [#2](https://github.com/konoka-iori/gemini-discord-bot/issues/2)
+  - ドキュメント修正
+- `2.1`:
+  - JSONの形式を更新 [#15](https://github.com/konoka-iori/gemini-discord-bot/issues/15)
+  - グローバルコマンドに対応
+  - 依存関係を更新
+  - **Gemini 1.5 Proに対応**
+  - カスタムアクティビティに対応
+  - 全体的なリファクタリングを実施
+  - `/about` のEmbedを変更
+  - ドキュメント修正
