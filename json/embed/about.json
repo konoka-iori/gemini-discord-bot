@@ -9,7 +9,7 @@
     },
     {
       "name": "`/chat`",
-      "value": "Geminiとチャットができます。一問一答方式で、会話履歴はBOT側に保存されません。\n使用されるモデルは `gemini-pro` です。\n\nGemini APIを利用しています。Geminiの概要、利用規約などについては公式サイト等を確認してください。\n会話内容はGemini APIに送信され、Gemini側で保存されて学習等に利用される可能性があります。詳しくはGemini APIの公式サイト等を確認してください。"
+      "value": "Geminiとチャットができます。一問一答方式で、会話履歴はBOT側に保存されません。\n使用されるモデルは `gemini-1.5-pro-latest` です。\n\nGemini APIを利用しています。Geminiの概要、利用規約などについては公式サイト等を確認してください。\n会話内容はGemini APIに送信され、Gemini側で保存されて学習等に利用される可能性があります。詳しくはGemini APIの公式サイト等を確認してください。"
     },
     {
       "name": "Gemini replies to message",
@@ -21,5 +21,5 @@
     "text": "Konoka-Iori",
     "icon_url": "https://images-ext-2.discordapp.net/external/YqkAi85wPTOxQ5VH73CbwucysCTlnN6gyFHX4ZOGeqI/https/avatars.githubusercontent.com/u/70302978"
   },
-  "timestamp": 1710088200
+  "timestamp": 1713006000
 }
