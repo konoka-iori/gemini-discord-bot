@@ -8,7 +8,7 @@ class Chat:
         try:
             gemini.configure(api_key=self.token)
             config = {"max_output_tokens": 1000}
-            model = gemini.GenerativeModel(model_name="gemini-pro", generation_config=config)
+            model = gemini.GenerativeModel(model_name="gemini-1.5-pro-latest", generation_config=config)
             chat = model.start_chat()
             return str(chat.send_message(message).text)
         except Exception as e:
