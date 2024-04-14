@@ -45,13 +45,16 @@ async def command_reply(ctx:discord.Interaction, message:discord.Message) -> Non
         response_embed.set_author(name=model_data.get_name, icon_url=model_data.get_icon)
         await ctx.followup.send(embeds=[user_embed, response_embed])
 
+
 @client.event
 async def on_ready() -> None:
     print(f"LOGGED IN: {client.user.name}")
     tree.copy_global_to(guild=DISCORD_SERVER_ID)
-    await tree.sync(guild=DISCORD_SERVER_ID) #コマンド同期
+    await tree.sync(guild=DISCORD_SERVER_ID) # コマンドを同期
     print("COMMAND SYNCED")
     await client.change_presence(status=discord.Status.online, activity=discord.CustomActivity(name="Gemini 1.5 Proを実行中"))
+    print("PRESENCE UPDATED")
+
 
 # Discordに接続
 client.run(DISCORD_BOT_TOKEN)
