@@ -1,5 +1,5 @@
 from genericpath import isdir, isfile
-from datetime import datetime
+from datetime import datetime, timezone
 import json
 
 
@@ -35,7 +35,7 @@ class jsonLoad(JsonLoader):
         if "color" in embed:
             embed["color"] = int(embed["color"].lstrip("#"), 16)
         if "timestamp" in embed:
-            embed["timestamp"] = datetime.utcfromtimestamp(int(embed["timestamp"])).isoformat()
+            embed["timestamp"] = datetime.fromtimestamp(int(embed["timestamp"]), tz=timezone.utc).isoformat()
         return embed
 
     def __get_command(self, command:str, key:str) -> str | None:
