@@ -40,9 +40,11 @@ async def command_ping(ctx:discord.Interaction) -> None:
 async def command_chat(ctx:discord.Interaction, message:str) -> None:
     async with ctx.channel.typing():
         await ctx.response.defer(thinking=True)
+        response = chat_data.get_response(message)
         user_embed = discord.Embed(description=message[:2048], color=discord.Color.green())
         user_embed.set_author(name=ctx.user.name, icon_url=ctx.user.avatar.url)
-        response_embed = discord.Embed(description=chat_data.get_response(message)[:2048], color=discord.Color.blue())
+        response_embed = discord.Embed(description=response[0][:2048], color=discord.Color.blue())
+        response_embed.add_field(name="回答にかかった時間", value=f"{round(response[1], 2)} ms", inline=False)
         response_embed.set_author(name=model_data.get_name(), icon_url=model_data.get_icon())
         await ctx.followup.send(embeds=[user_embed, response_embed])
 
