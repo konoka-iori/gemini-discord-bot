@@ -1,4 +1,5 @@
 from os import getenv
+from time import time
 import discord
 import discord.app_commands
 import chat
@@ -23,6 +24,16 @@ async def command_about(ctx:discord.Interaction) -> None:
     async with ctx.channel.typing():
         await ctx.response.defer(thinking=True)
         embed = discord.Embed.from_dict(command_data.get_command_embed("about"))
+        await ctx.followup.send(embed=embed)
+
+@tree.command(name="ping", description=command_data.get_command_description("ping"))
+async def command_ping(ctx:discord.Interaction) -> None:
+    async with ctx.channel.typing():
+        await ctx.response.defer(thinking=True)
+        embed = discord.Embed(title=":ping_pong: pong!")
+        embed.add_field(name=":globe_with_meridians: Discord WebSocket", value=f"{round(client.latency, 2)} ms", inline=True)
+        embed.add_field(name=":link: Discord API Endpoint", value=f"{round(time() - ctx.created_at.timestamp(), 2)} ms", inline=True)
+        embed.add_field(name=":speech_balloon: Gemini API", value=str(chat_data.ping()), inline=False)
         await ctx.followup.send(embed=embed)
 
 @tree.command(name="chat", description=command_data.get_command_description("chat"))
