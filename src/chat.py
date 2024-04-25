@@ -4,12 +4,12 @@ import google.generativeai as gemini
 
 class Chat:
     def __init__(self, token:str, model:str) -> None:
-        self.token = token
+        self.__token = token
         self.model = model
 
     def get_response(self, message:str) -> tuple[str, float]:
         try:
-            gemini.configure(api_key=self.token)
+            gemini.configure(api_key=self.__token)
             config = {"max_output_tokens": 1000}
             model = gemini.GenerativeModel(model_name=self.model, generation_config=config)
             start = time()
