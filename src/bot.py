@@ -1,5 +1,6 @@
 from os import getenv
 from time import time
+from datetime import datetime
 import discord
 import discord.app_commands
 import chat
@@ -23,9 +24,13 @@ def generate_chat_embed(ctx:discord.interactions.Interaction, message:str) -> tu
     response = chat_data.get_response(message)
     user_embed = discord.Embed(description=message[:2048], color=discord.Color.green())
     user_embed.set_author(name=ctx.user.name, icon_url=ctx.user.avatar.url)
+    user_embed.set_footer(text="User Prompt")
+    user_embed.timestamp = ctx.created_at
     response_embed = discord.Embed(description=response[0][:2048], color=discord.Color.blue())
     response_embed.add_field(name="回答にかかった時間", value=f"{round(response[1], 2)} ms", inline=False)
     response_embed.set_author(name=model_data.get_name(), icon_url=model_data.get_icon())
+    response_embed.set_footer(text=model_data.get_model_name())
+    response_embed.timestamp = datetime.now()
     return user_embed, response_embed
 
 
@@ -49,7 +54,6 @@ async def command_ping(ctx:discord.interactions.Interaction) -> None:
 async def command_chat(ctx:discord.interactions.Interaction, message:str) -> None:
     async with ctx.channel.typing():
         await ctx.response.defer(thinking=True)
-        print(type(ctx))
         await ctx.followup.send(embeds=generate_chat_embed(ctx=ctx, message=message))
 
 @tree.context_menu(name="Gemini replies to message")
