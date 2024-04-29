@@ -49,13 +49,13 @@ async def command_ping(ctx:discord.Interaction) -> None:
 async def command_chat(ctx:discord.Interaction, message:str) -> None:
     async with ctx.channel.typing():
         await ctx.response.defer(thinking=True)
-        await ctx.followup.send(embeds=generate_chat_embed(ctx, message))
+        await ctx.followup.send(embeds=generate_chat_embed(ctx=ctx, message=message))
 
 @tree.context_menu(name="Gemini replies to message")
 async def command_reply(ctx:discord.Interaction, message:discord.Message) -> None:
     async with ctx.channel.typing():
         await ctx.response.defer(thinking=True)
-        await ctx.followup.send(embeds=generate_chat_embed(ctx, message.content))
+        await ctx.followup.send(embeds=generate_chat_embed(ctx=ctx, message=message.content))
 
 
 @client.event
