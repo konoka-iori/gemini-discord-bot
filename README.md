@@ -1,7 +1,7 @@
 # gemini-discord-bot
 
 これは簡易的なDiscordチャットボットです。Geminiとの会話機能が実装されています。
-@konoka-iori が個人的に使用するために作成されました。主に小規模なDiscordサーバーでの利用を想定しています。
+[@konoka-iori](https://github.com/konoka-iori) が個人的に使用するために作成されました。主に小規模なDiscordサーバーでの利用を想定しています。
 Gemini APIを使ったDiscordのチャットボット作ってみたいよという人はぜひ参考にしてみてくださいね。
 
 # 機能一覧と使い方
@@ -34,9 +34,12 @@ Gemini APIを使ったDiscordのチャットボット作ってみたいよとい
 
 このBOTを正常に動作させるには以下の権限が必須です。
 
-SCOPES: bot
+SCOPES:
 
-BOT PERMISSIONS:
+- bot
+- applications.commands
+
+BOT PERMISSIONS / TEXT PERMISSIONS:
 
 - Send Messages
 - Send Messages in Threads (スレッド内でもBOTを利用したい場合は必須)
@@ -61,22 +64,22 @@ BOT PERMISSIONS:
 
 # バージョン履歴
 
-- `1.0`:
+- [1.0](https://github.com/konoka-iori/gemini-discord-bot/pull/1):
   - 初版リリース（ `/about` と `/chat` の追加）
-- `1.1`:
+- [1.1](https://github.com/konoka-iori/gemini-discord-bot/pull/7):
   - ユーザーが送信した内容を返信に表示するよう改善 [#3](https://github.com/konoka-iori/gemini-discord-bot/issues/2)
-- `1.2`:
+- [1.2](https://github.com/konoka-iori/gemini-discord-bot/pull/10):
   - Pythonのバージョンを3.9から3.11に変更
   - 不具合修正 [#9](https://github.com/konoka-iori/gemini-discord-bot/issues/9)
-- `1.3`:
+- [1.3](https://github.com/konoka-iori/gemini-discord-bot/pull/12):
   - ドキュメントの拡充 [#6](https://github.com/konoka-iori/gemini-discord-bot/issues/6)
   - 不具合修正 [#11](https://github.com/konoka-iori/gemini-discord-bot/issues/11)
   - `/about` のEmbedを変更
   - EmbedのタイムスタンプをUTC時間に変換し、より正確なタイムスタンプを表示できるように対応
-- `2.0`:
+- [2.0](https://github.com/konoka-iori/gemini-discord-bot/pull/14):
   - 機能追加 [#2](https://github.com/konoka-iori/gemini-discord-bot/issues/2)
   - ドキュメント修正
-- `2.1`:
+- `[2.1](https://github.com/konoka-iori/gemini-discord-bot/pull/17):
   - JSONの形式を更新 [#15](https://github.com/konoka-iori/gemini-discord-bot/issues/15)
   - グローバルコマンドに対応
   - 依存関係を更新
@@ -85,3 +88,11 @@ BOT PERMISSIONS:
   - 全体的なリファクタリングを実施
   - `/about` のEmbedを変更
   - ドキュメント修正
+- [2.2](https://github.com/konoka-iori/gemini-discord-bot/pull/21):
+  - `/ping` コマンドを追加 [#19](https://github.com/konoka-iori/gemini-discord-bot/issues/19)
+  - 回答にかかった時間がEmbedに表示されるように変更
+  - Embedのフッターとタイムスタンプを追加
+  - `/about` のEmbedに `/ping` の説明を追加し、スラッシュコマンドのリンクを追加
+  - 不具合修正（グローバルコマンドが正常に同期されない問題を修正）
+  - コードのリファクタリング
+  - ドキュメント修正（botの権限設定を追加）
