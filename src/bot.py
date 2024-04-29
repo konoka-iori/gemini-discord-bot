@@ -61,7 +61,6 @@ async def command_reply(ctx:discord.Interaction, message:discord.Message) -> Non
 @client.event
 async def on_ready() -> None:
     print(f"LOGGED IN: {client.user.name}")
-    tree.clear_commands(guild=DISCORD_SERVER_ID) # コマンドをクリア
     tree.copy_global_to(guild=DISCORD_SERVER_ID)
     await tree.sync(guild=DISCORD_SERVER_ID) # コマンドを同期
     print("COMMAND SYNCED")
