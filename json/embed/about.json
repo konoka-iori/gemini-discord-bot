@@ -4,11 +4,11 @@
   "description": "これは簡易的なDiscordチャットボットです。Geminiとの会話機能が実装されています。\nこのBOTのソースコードは[GitHub](https://github.com/konoka-iori/gemini-discord-bot)で公開されています。\n不具合報告、機能追加要望などはIssueください。Pull Requestも歓迎です！",
   "fields": [
     {
-      "name": "`/about`",
+      "name": "</about:1196637313560748052>",
       "value": "BOTの説明を表示します。\nそう、このメッセージのことです。"
     },
     {
-      "name": "`/chat`",
+      "name": "</chat:1196637313560748053>",
       "value": "Geminiとチャットができます。一問一答方式で、会話履歴はBOT側に保存されません。\n使用されるモデルは `gemini-1.5-pro-latest` です。\n\nGemini APIを利用しています。Geminiの概要、利用規約などについては公式サイト等を確認してください。\n会話内容はGemini APIに送信され、Gemini側で保存されて学習等に利用される可能性があります。詳しくはGemini APIの公式サイト等を確認してください。"
     },
     {
