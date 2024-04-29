@@ -1,6 +1,7 @@
-from genericpath import isdir, isfile
-from datetime import datetime, timezone
 import json
+from datetime import datetime, timezone
+
+from genericpath import isdir, isfile
 
 
 class JsonLoader:
