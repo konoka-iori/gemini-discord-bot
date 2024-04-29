@@ -33,8 +33,7 @@ def generate_chat_embed(ctx:discord.Integration, message:str) -> tuple[discord.E
 async def command_about(ctx:discord.Interaction) -> None:
     async with ctx.channel.typing():
         await ctx.response.defer(thinking=True)
-        embed = discord.Embed.from_dict(command_data.get_command_embed("about"))
-        await ctx.followup.send(embed=embed)
+        await ctx.followup.send(embed=discord.Embed.from_dict(command_data.get_command_embed("about")))
 
 @tree.command(name="ping", description=command_data.get_command_description("ping"))
 async def command_ping(ctx:discord.Interaction) -> None:
@@ -62,6 +61,7 @@ async def command_reply(ctx:discord.Interaction, message:discord.Message) -> Non
 @client.event
 async def on_ready() -> None:
     print(f"LOGGED IN: {client.user.name}")
+    tree.clear_commands(guild=DISCORD_SERVER_ID) # コマンドをクリア
     tree.copy_global_to(guild=DISCORD_SERVER_ID)
     await tree.sync(guild=DISCORD_SERVER_ID) # コマンドを同期
     print("COMMAND SYNCED")
