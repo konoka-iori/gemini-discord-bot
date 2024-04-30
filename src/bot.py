@@ -9,13 +9,9 @@ import chat
 import json_load
 
 
-DISCORD_BOT_TOKEN = getenv("DISCORD_BOT_TOKEN")
-GEMINI_API_KEY = getenv("GEMINI_API_KEY")
-DISCORD_SERVER_ID = discord.Object(getenv("DISCORD_SERVER_ID"))
-
 command_data = json_load.jsonLoad()
 model_data = json_load.ModelLoad()
-chat_data = chat.Chat(token=GEMINI_API_KEY, model=model_data.get_model_name())
+chat_data = chat.Chat(token=getenv("GEMINI_API_KEY"), model=model_data.get_model_name())
 
 
 client = discord.Client(intents=discord.Intents.all())
@@ -73,7 +69,7 @@ async def command_reply(ctx:discord.interactions.Interaction, message:discord.Me
 @client.event
 async def on_ready() -> None:
     print(f"LOGGED IN: {client.user.name}")
-    tree.copy_global_to(guild=DISCORD_SERVER_ID)
+    tree.copy_global_to(guild=discord.Object(getenv("DISCORD_SERVER_ID")))
     await tree.sync() # コマンドを同期
     print("COMMAND SYNCED")
     await client.change_presence(status=discord.Status.online, activity=discord.CustomActivity(name="Gemini 1.5 Proを実行中"))
@@ -81,4 +77,4 @@ async def on_ready() -> None:
 
 
 # Discordに接続
-client.run(DISCORD_BOT_TOKEN)
+client.run(getenv("DISCORD_BOT_TOKEN"))
