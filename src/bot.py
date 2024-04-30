@@ -22,6 +22,11 @@ client = discord.Client(intents=discord.Intents.all())
 tree = discord.app_commands.CommandTree(client)
 
 
+class GitHubLinkView(discord.ui.View):
+    def __init__(self) -> None:
+        super().__init__()
+        self.add_item(discord.ui.Button(label="GitHubでBOTのリポジトリを見る", url="https://github.com/konoka-iori/gemini-discord-bot", style=discord.ButtonStyle.url, emoji="🔗"))
+
 def generate_chat_embed(ctx:discord.interactions.Interaction, message:str) -> tuple[discord.Embed, discord.Embed]:
     response = chat_data.get_response(message)
     user_embed = discord.Embed(description=message[:2048], color=discord.Color.green())
@@ -40,7 +45,7 @@ def generate_chat_embed(ctx:discord.interactions.Interaction, message:str) -> tu
 async def command_about(ctx:discord.interactions.Interaction) -> None:
     async with ctx.channel.typing():
         await ctx.response.defer(thinking=True)
-        await ctx.followup.send(embed=discord.Embed.from_dict(command_data.get_command_embed("about")))
+        await ctx.followup.send(embed=discord.Embed.from_dict(command_data.get_command_embed("about")), view=GitHubLinkView())
 
 @tree.command(name="ping", description=command_data.get_command_description("ping"))
 async def command_ping(ctx:discord.interactions.Interaction) -> None:
