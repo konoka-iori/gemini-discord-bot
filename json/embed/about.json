@@ -4,15 +4,15 @@
   "description": "これは簡易的なDiscordチャットボットです。Geminiとの会話機能が実装されています。\nこのBOTのソースコードは[GitHub](https://github.com/konoka-iori/gemini-discord-bot)で公開されています。\n不具合報告、機能追加要望などはIssueください。Pull Requestも歓迎です！",
   "fields": [
     {
-      "name": "`/about`",
+      "name": "/about",
       "value": "BOTの説明を表示します。\nそう、このメッセージのことです。"
     },
     {
-      "name": "`/ping`",
-      "value": "BOTやAPIの生存確認を行い、応答速度を表示します。\n- `Discord WebSocket` はBOTサーバーとDiscord APIの間のレイテンシです。\n- `Discord API Endpoint` はユーザーが `/ping` コマンドを送信してからBOTが返答するまでのレイテンシです。\n- `Gemini API` はGemini APIに「ping」とメッセージを送信し、Geminiが返答するまでのレイテンシです。"
+      "name": "/ping",
+      "value": "BOTやAPIの生存確認を行い、応答速度を表示します。\n- `Discord WebSocket`: BOTサーバーとDiscord APIの間のレイテンシです。\n- `Discord API Endpoint`: ユーザーが `/ping` コマンドを送信してからBOTが返答するまでのレイテンシです。\n- `Gemini API`: Gemini APIに「ping」とメッセージを送信し、Geminiが返答するまでのレイテンシです。"
     },
     {
-      "name": "`/chat`",
+      "name": "/chat",
       "value": "Geminiとチャットができます。一問一答方式で、会話履歴はBOT側に保存されません。\n使用されるモデルは `gemini-1.5-pro-latest` です。\n\nGemini APIを利用しています。Geminiの概要、利用規約などについては公式サイト等を確認してください。\n会話内容はGemini APIに送信され、Gemini側で保存されて学習等に利用される可能性があります。詳しくはGemini APIの公式サイト等を確認してください。"
     },
     {
@@ -25,5 +25,5 @@
     "text": "Konoka-Iori",
     "icon_url": "https://images-ext-2.discordapp.net/external/YqkAi85wPTOxQ5VH73CbwucysCTlnN6gyFHX4ZOGeqI/https/avatars.githubusercontent.com/u/70302978"
   },
-  "timestamp": 1714401000
+  "timestamp": 1714460400
 }
