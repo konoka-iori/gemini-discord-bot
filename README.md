@@ -31,6 +31,10 @@ Gemini APIを使ったDiscordのチャットボット作ってみたいよとい
 7. `pipenv run bot.py` を実行します。（pipenvを使わない場合は `python bot.py` など。）
 8. コマンドラインに `COMMAND SYNCED` と表示され、BOTがオンラインになったらDiscordで `/about` と入力してみましょう！( `/chat` も動くはず！)
 
+> [!CAUTION]
+> 使用するときは必ず `.env.sample` を `.env` にリネームしてください。`.env` は `.gitignore` に登録されているため、GitHubにアップロードされません。
+> この操作を忘れ、 `.env.sample` にAPI Keyなどの情報を入力すると正常に動作しないどころか、うっかりGitHubにアップロードするとAPI Keyなどの重要な情報が漏洩する可能性があります。必ず `.env` にリネームしてから情報を入力してください。
+
 ## Discordの権限設定
 
 このBOTを正常に動作させるには以下の権限が必須です。
