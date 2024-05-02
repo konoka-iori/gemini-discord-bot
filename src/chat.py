@@ -25,7 +25,7 @@ class Chat:
         if response[1] == 0:
             return str(response[0])
         else:
-            return f"{round(response[1], 2)} ms"
+            return f"{round(response[1] * 1000, 2)} ms"
 
 
 if __name__ == "__main__":
