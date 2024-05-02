@@ -5,11 +5,11 @@ from genericpath import isdir, isfile
 
 
 class JsonLoader:
-    def __init__(self, file_path:str) -> None:
+    def __init__(self, file_path: str) -> None:
         self.__json_file = file_path
         self.data = self.load_json(self.__json_file)
 
-    def __file_check(self, json_file:str|None) -> str:
+    def __file_check(self, json_file: str | None) -> str:
         try:
             if not isdir("json"):
                 raise IsADirectoryError("JSONディレクトリがありません")
@@ -17,10 +17,11 @@ class JsonLoader:
                 raise ValueError("JSONファイルが指定されていません")
             elif not isfile(json_file):
                 raise FileNotFoundError("JSONファイルがありません")
-        except IsADirectoryError as e: print(e)
+        except IsADirectoryError as e:
+            print(e)
         return str(json_file)
 
-    def load_json(self, file_path:str|None) -> dict:
+    def load_json(self, file_path: str | None) -> dict:
         with open(self.__file_check(file_path), "r", encoding="utf-8") as jsonfile:
             data = json.load(jsonfile)
             if not isinstance(data, dict):
@@ -32,23 +33,24 @@ class jsonLoad(JsonLoader):
     def __init__(self) -> None:
         super().__init__("json/command.json")
 
-    def __embed_formater(self, embed:dict) -> dict:
+    def __embed_formater(self, embed: dict) -> dict:
         if "color" in embed:
             embed["color"] = int(embed["color"].lstrip("#"), 16)
         if "timestamp" in embed:
-            embed["timestamp"] = datetime.fromtimestamp(int(embed["timestamp"]), tz=timezone.utc).isoformat()
+            embed["timestamp"] = datetime.fromtimestamp(
+                int(embed["timestamp"]), tz=timezone.utc).isoformat()
         return embed
 
-    def __get_command(self, command:str, key:str) -> str | None:
+    def __get_command(self, command: str, key: str) -> str | None:
         try:
             return str(self.data[command][key])
         except KeyError:
             return None
 
-    def get_command_description(self, command:str) -> str:
+    def get_command_description(self, command: str) -> str:
         return str(self.__get_command(command, "description"))
 
-    def get_command_embed(self, command:str) -> dict | None:
+    def get_command_embed(self, command: str) -> dict | None:
         return self.__embed_formater(self.load_json(self.__get_command(command, "embed")))
 
     # def get_command_value(self, command:str) -> dict:
