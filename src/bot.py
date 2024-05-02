@@ -27,6 +27,14 @@ class GitHubLinkView(discord.ui.View):
 
 
 def generate_chat_embed(ctx: discord.interactions.Interaction, message: str) -> tuple[discord.Embed, discord.Embed]:
+    """Generate Embeds to be used in chat commands.
+
+    Args:
+        ctx (discord.interactions.Interaction): Discord interaction context
+        message (str): User message
+    Returns:
+        tuple[discord.Embed, discord.Embed]: [0]: User response embed, [1]: Gemini response embed
+    """
     response = chat_data.get_response(message)
     user_embed = discord.Embed(
         description=message[:2048], color=discord.Color.green())

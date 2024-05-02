@@ -9,6 +9,13 @@ class Chat:
         self.__model = model
 
     def get_response(self, message: str) -> tuple[str, float]:
+        """Get response from Gemini API.
+
+        Args:
+            message (str): User message
+        Returns:
+            tuple[str, float]: [0]: Gemini response, [1]: Processing time
+        """
         try:
             gemini.configure(api_key=self.__token)
             config = {"max_output_tokens": 1000}
@@ -22,6 +29,11 @@ class Chat:
             return f"エラーが発生しました。以下の内容をコピペして管理者までお知らせください。\n```{e}```", float(0)
 
     def ping(self) -> str:
+        """Ping Gemini API.
+
+        Returns:
+            str: Ping result
+        """
         response = self.get_response("ping")
         if response[1] == 0:
             return str(response[0])
