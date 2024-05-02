@@ -24,7 +24,7 @@ class Chat:
             start = time()
             response = model.generate_content(message)
             end = time()
-            return str(response.text), float(end - start)
+            return str(response.text), float((end - start) * 1000)
         except Exception as e:
             return f"エラーが発生しました。以下の内容をコピペして管理者までお知らせください。\n```{e}```", float(0)
 
@@ -38,7 +38,7 @@ class Chat:
         if response[1] == 0:
             return str(response[0])
         else:
-            return f"{round(response[1] * 1000, 2)} ms"
+            return f"{round(response[1], 2)} ms"
 
 
 if __name__ == "__main__":

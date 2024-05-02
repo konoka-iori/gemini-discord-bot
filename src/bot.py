@@ -67,7 +67,7 @@ async def command_ping(ctx: discord.interactions.Interaction) -> None:
         embed.add_field(name=":globe_with_meridians: Discord WebSocket",
                         value=f"{round(client.latency * 1000, 2)} ms", inline=True)
         embed.add_field(name=":link: Discord API Endpoint",
-                        value=f"{round(time() - ctx.created_at.timestamp() * 1000, 2)} ms", inline=True)
+                        value=f"{round((time() - ctx.created_at.timestamp()) * 1000, 2)} ms", inline=True)
         embed.add_field(name=":speech_balloon: Gemini API",
                         value=str(chat_data.ping()), inline=False)
         await ctx.followup.send(embed=embed)
