@@ -12,7 +12,7 @@ import json_load
 command_data = json_load.jsonLoad()
 model_data = json_load.ModelLoad()
 chat_data = chat.Chat(token=getenv("GEMINI_API_KEY"),
-                      model=model_data.get_model_name())
+                      model=model_data.get_model_name(), default_prompt=model_data.get_prompt_default())
 
 
 client = discord.Client(intents=discord.Intents.all())
@@ -35,7 +35,7 @@ def generate_chat_embed(ctx: discord.interactions.Interaction, message: str) -> 
     Returns:
         tuple[discord.Embed, discord.Embed]: [0]: User response embed, [1]: Gemini response embed
     """
-    response = chat_data.get_response(message)
+    response = chat_data.get_response(message=message)
     user_embed = discord.Embed(
         description=message[:2048], color=discord.Color.green())
     user_embed.set_author(name=ctx.user.name, icon_url=ctx.user.avatar.url)
@@ -95,6 +95,7 @@ async def on_ready() -> None:
     print("COMMAND SYNCED")
     await client.change_presence(status=discord.Status.online, activity=discord.CustomActivity(name="Gemini 1.5 Proを実行中"))
     print("PRESENCE UPDATED")
+    print(model_data.get_prompt_default())
 
 
 # Discordに接続

@@ -121,6 +121,12 @@ class ModelLoad(JsonLoader):
         except KeyError:
             return None
 
+    def __get_prompt(self, key: str) -> str | None:
+        try:
+            return str(self.data["prompts"][key])
+        except KeyError:
+            return None
+
     def get_name(self) -> str:
         """Get the user-friendly name of the model.
 
@@ -145,6 +151,9 @@ class ModelLoad(JsonLoader):
         """
         return str(self.__get("icon"))
 
+    def get_prompt_default(self) -> str:
+        return str(self.__get_prompt("default"))
+
 
 if __name__ == "__main__":
     data_loader = jsonLoad()
@@ -161,3 +170,6 @@ if __name__ == "__main__":
     print(model_loader.get_name())
     print(model_loader.get_model_name())
     print(model_loader.get_icon())
+
+    print("---prompt data---")
+    print(model_loader.get_prompt_default())
