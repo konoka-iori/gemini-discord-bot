@@ -91,7 +91,7 @@ async def command_reply(ctx: discord.interactions.Interaction, message: discord.
 async def on_ready() -> None:
     print(f"LOGGED IN: {client.user.name}")
     tree.copy_global_to(guild=discord.Object(getenv("DISCORD_SERVER_ID")))
-    await tree.sync()  # コマンドを同期
+    await tree.sync()
     print("COMMAND SYNCED")
     await client.change_presence(status=discord.Status.online, activity=discord.CustomActivity(name="Gemini 1.5 Proを実行中"))
     print("PRESENCE UPDATED")

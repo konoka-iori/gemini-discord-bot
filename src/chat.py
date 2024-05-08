@@ -14,17 +14,17 @@ class Chat:
         Args:
             message (str): User message
         Returns:
-            tuple[str, float]: [0]: Gemini response, [1]: Processing time
+            tuple[str, float]: [0]: Gemini response, [1]: Processing time. Unit: ms
         """
         try:
             gemini.configure(api_key=self.__token)
             config = {"max_output_tokens": 1000}
             model = gemini.GenerativeModel(
                 model_name=self.__model, generation_config=config)
-            start = time()
+            start_s = time()
             response = model.generate_content(message)
-            end = time()
-            return str(response.text), float((end - start) * 1000)
+            end_s = time()
+            return str(response.text), float((end_s - start_s) * 1000)
         except Exception as e:
             return f"エラーが発生しました。以下の内容をコピペして管理者までお知らせください。\n```{e}```", float(0)
 
@@ -32,7 +32,7 @@ class Chat:
         """Ping Gemini API.
 
         Returns:
-            str: Ping result
+            str: Ping result.
         """
         response = self.get_response("ping")
         if response[1] == 0:
