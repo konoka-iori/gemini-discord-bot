@@ -6,6 +6,7 @@ name = "pypi"
 [packages]
 "discord.py" = "*"
 "google.generativeai" = "*"
+python-dotenv = "*"
 
 [dev-packages]
 

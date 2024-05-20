@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "2ddc99fd5cff154e2840adf2cbefec9ddffc77566bfdaa79c8e663a6939663f6"
+            "sha256": "831366f58c4b614a1c8097f3a6bbb813ee3e7c26a3dba966d7f728a6fcc4b31b"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -335,11 +335,11 @@
         },
         "google-ai-generativelanguage": {
             "hashes": [
-                "sha256:308791ac3b9dad015b359172970739aa3753dd542142a416d07f9fa047e22386",
-                "sha256:bf84c34c641570d7e8a1f2e6901e6771af1438f2ee8307d1801fd43585f9b1c6"
+                "sha256:1750848c12af96cb24ae1c3dd05e4bfe24867dc4577009ed03e1042d8421e874",
+                "sha256:730e471aa549797118fb1c88421ba1957741433ada575cf5dd08d3aebf903ab1"
             ],
             "markers": "python_version >= '3.7'",
-            "version": "==0.6.2"
+            "version": "==0.6.4"
         },
         "google-api-core": {
             "hashes": [
@@ -351,11 +351,11 @@
         },
         "google-api-python-client": {
             "hashes": [
-                "sha256:bbb51b0fbccdf40e536c26341e372d7800f09afebb53103bbcc94e08f14b523b",
-                "sha256:d01c70c7840ec37888aa02b1aea5d9baba4c1701e268d1a0251640afd56e5e90"
+                "sha256:984cc8cc8eb4923468b1926d2b8effc5b459a4dda3c845896eb87c153b28ef84",
+                "sha256:d50f7e2dfdbb7fc2732f6a0cba1c54d7bb676390679526c6bb628c901e43ec86"
             ],
             "markers": "python_version >= '3.7'",
-            "version": "==2.127.0"
+            "version": "==2.129.0"
         },
         "google-auth": {
             "hashes": [
@@ -374,10 +374,10 @@
         },
         "google.generativeai": {
             "hashes": [
-                "sha256:56f39485a0a673c93c21ec31c17809cc6a964193fb77b7ce809ad15d0dd72d7b"
+                "sha256:036d63ee35e7c8aedceda4f81c390a5102808af09ff3a6e57e27ed0be0708f3c"
             ],
             "index": "pypi",
-            "version": "==0.5.2"
+            "version": "==0.5.4"
         },
         "googleapis-common-protos": {
             "hashes": [
@@ -699,6 +699,14 @@
             "markers": "python_version >= '3.1'",
             "version": "==3.1.2"
         },
+        "python-dotenv": {
+            "hashes": [
+                "sha256:e324ee90a023d808f1959c46bcbc04446a10ced277783dc6ee09987c37ec10ca",
+                "sha256:f7b63ef50f1b690dddf550d03497b66d609393b40b564ed0d674909a68ebf16a"
+            ],
+            "index": "pypi",
+            "version": "==1.0.1"
+        },
         "requests": {
             "hashes": [
                 "sha256:58cd2187c01e70e6e26505bca751777aa9f2ee0b7f4300988b709f44e013003f",
@@ -717,12 +725,11 @@
         },
         "tqdm": {
             "hashes": [
-                "sha256:23097a41eba115ba99ecae40d06444c15d1c0c698d527a01c6c8bd1c5d0647e5",
-                "sha256:4f41d54107ff9a223dca80b53efe4fb654c67efaba7f47bada3ee9d50e05bd53"
+                "sha256:b75ca56b413b030bc3f00af51fd2c1a1a5eac6a0c1cca83cbb37a5c52abce644",
+                "sha256:e4d936c9de8727928f3be6079590e97d9abfe8d39a590be678eb5919ffc186bb"
             ],
-            "index": "pypi",
             "markers": "python_version >= '3.7'",
-            "version": "==4.66.3"
+            "version": "==4.66.4"
         },
         "typing-extensions": {
             "hashes": [
