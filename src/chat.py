@@ -10,7 +10,7 @@ class Chat:
         self.__default_prompt = default_prompt
 
     def get_response(self, message: str, prompt: str = "") -> tuple[str, float]:
-        """Get response from Gemini API.
+        """Gemini APIからの応答を取得します。
 
         Args:
             message (str): User message
@@ -33,7 +33,7 @@ class Chat:
             return f"エラーが発生しました。以下の内容をコピペして管理者までお知らせください。\n```{e}```", float(0)
 
     def ping(self) -> str:
-        """Ping Gemini API.
+        """Gemini APIにpingを送信し、応答速度を取得します。
 
         Returns:
             str: Ping result.
