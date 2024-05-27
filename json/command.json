@@ -1,22 +1,14 @@
 {
     "about": {
-        "description": "BOTの説明を表示します。",
-        "value": "",
         "embed": "json/embed/about.json"
     },
     "ping": {
-        "description": "BOTの生存確認を行い、応答速度を表示します。",
-        "value": "",
         "embed": ""
     },
     "chat": {
-        "description": "Gemini-Proと会話できます。",
-        "value": "",
         "embed": ""
     },
     "reply": {
-        "description": "すでにあるメッセージに対してGemini-Proが回答します。",
-        "value": "",
         "embed": ""
     }
 }

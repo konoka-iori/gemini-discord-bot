@@ -6,7 +6,7 @@ from genericpath import isdir, isfile
 
 class JsonLoader:
     def __init__(self, file_path: str) -> None:
-        """JSON loader class.
+        """JSONをロードします。
 
         Args:
             file_path (str): JSON file path
@@ -15,7 +15,7 @@ class JsonLoader:
         self.data = self.load_json(self.__json_file)
 
     def __file_check(self, json_file: str | None) -> str:
-        """Check if the JSON file exists in the correct location.
+        """JSONファイルが正しい場所に存在するかチェックします。
 
         Args:
             json_file (str | None): JSON file path
@@ -38,7 +38,7 @@ class JsonLoader:
         return str(json_file)
 
     def load_json(self, file_path: str | None) -> dict:
-        """Load JSON file.
+        """JSONファイルをロードします。
 
         Args:
             file_path (str | None): JSON file path
@@ -59,7 +59,7 @@ class jsonLoad(JsonLoader):
         super().__init__("json/command.json")
 
     def __embed_formater(self, embed: dict) -> dict:
-        """Embed formater. color are converted to hex and timestamp to isoformat.
+        """カラーを16進数に変換し、タイムスタンプをISO8601形式に変換します。
 
         Args:
             embed (dict): Embed data
@@ -74,7 +74,7 @@ class jsonLoad(JsonLoader):
         return embed
 
     def __get_command(self, command: str, key: str) -> str | None:
-        """Retrieves the value corresponding to a key for a given command.
+        """指定されたコマンドのキーに対応する値を取得します。
 
         Args:
             command (str): The name of the command to search for.
@@ -87,18 +87,8 @@ class jsonLoad(JsonLoader):
         except KeyError:
             return None
 
-    def get_command_description(self, command: str) -> str:
-        """Get command description.
-
-        Args:
-            command (str): Command name
-        Returns:
-            str: Command description
-        """
-        return str(self.__get_command(command, "description"))
-
     def get_command_embed(self, command: str) -> dict | None:
-        """Get Emned used in the command.
+        """コマンドで使用されているEmnedを取得する。
 
         Args:
             command (str): Command name
@@ -159,11 +149,7 @@ if __name__ == "__main__":
     data_loader = jsonLoad()
 
     print("---about command---")
-    print(data_loader.get_command_description("about"))
     print(data_loader.get_command_embed("about"))
-
-    print("---chat command---")
-    print(data_loader.get_command_description("chat"))
 
     print("---model data---")
     model_loader = ModelLoad()
