@@ -1,10 +1,12 @@
-import discord
-from discord.ext import commands
-from json_load import ModelLoad
-from chat import Chat
-from dotenv import dotenv_values
 from datetime import datetime
 from time import time
+
+import discord
+from discord.ext import commands
+from dotenv import dotenv_values
+
+from chat import Chat
+from json_load import ModelLoad
 
 
 class ChatCog(commands.Cog):
@@ -20,7 +22,7 @@ class ChatCog(commands.Cog):
                               model=self.model_data.get_model_name(), default_prompt=self.model_data.get_prompt_default())
 
     def generate_chat_embed(self, ctx: discord.interactions.Interaction, message: str) -> tuple[discord.Embed, discord.Embed]:
-        """Generate Embeds to be used in chat commands.
+        """チャットコマンドで使用するEmbedを生成します。
 
         Args:
             ctx (discord.interactions.Interaction): Discord interaction context

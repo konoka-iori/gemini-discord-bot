@@ -1,6 +1,5 @@
-from os import listdir
-
 import asyncio
+from os import listdir
 
 import discord
 import discord.app_commands
@@ -27,14 +26,14 @@ async def main() -> None:
     bot = commands.Bot(command_prefix="/", intents=discord.Intents.default())
 
     @bot.event
-    async def setup_hook() -> None:  # on_readyの前に実行されるイベントリスナー
+    async def setup_hook() -> None:
         await bot.tree.sync()  # グローバルコマンドを同期する
         print("GLOBAL COMMANDS SYNCED")
         await bot.tree.sync(guild=DISCORD_SERVER_ID)  # ギルドにコマンドを同期する
         print("COMMANDS SYNCED")
 
     @bot.event
-    async def on_ready() -> None:  # Botが起動したときに実行されるイベントリスナー
+    async def on_ready() -> None:
         print(f"LOGGED IN: {bot.user.name}")
 
     asyncio.gather(*[bot.load_extension(f"cogs.{cog[:-3]}")
