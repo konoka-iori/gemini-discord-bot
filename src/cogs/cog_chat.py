@@ -4,6 +4,7 @@ from json_load import ModelLoad
 from chat import Chat
 from dotenv import dotenv_values
 from datetime import datetime
+from time import time
 
 
 class ChatCog(commands.Cog):
@@ -58,6 +59,19 @@ class ChatCog(commands.Cog):
     #     async with ctx.channel.typing():
     #         await ctx.response.defer(thinking=True)
     #         await ctx.followup.send(embeds=self.generate_chat_embed(ctx=ctx, message=message.content))
+
+    @discord.app_commands.command(name="ping", description="BOTの生存確認を行い、応答速度を表示します。")
+    async def command_ping(self, ctx: discord.interactions.Interaction) -> None:
+        async with ctx.channel.typing():
+            await ctx.response.defer(thinking=True)
+            embed = discord.Embed(title=":ping_pong: pong!")
+            embed.add_field(name=":globe_with_meridians: Discord WebSocket",
+                            value=f"{round(self.bot.latency * 1000, 2)} ms", inline=True)
+            embed.add_field(name=":link: Discord API Endpoint",
+                            value=f"{round((time() - ctx.created_at.timestamp()) * 1000, 2)} ms", inline=True)
+            embed.add_field(name=":speech_balloon: Gemini API",
+                            value=str(self.chat_data.ping()), inline=False)
+            await ctx.followup.send(embed=embed)
 
 
 async def setup(bot: commands.Bot) -> None:
