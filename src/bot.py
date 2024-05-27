@@ -38,6 +38,8 @@ async def main() -> None:
     @bot.event
     async def on_ready() -> None:
         print(f"LOGGED IN: {bot.user.name}")
+        await bot.change_presence(status=discord.Status.online, activity=discord.CustomActivity(name="Gemini 1.5 Proを実行中"))
+        print("PRESENCE UPDATED")
 
     asyncio.gather(*[bot.load_extension(f"cogs.{cog[:-3]}")
                    for cog in listdir("src/cogs") if cog.endswith(".py")])
@@ -46,9 +48,3 @@ async def main() -> None:
 
 if __name__ == "__main__":
     asyncio.run(main())
-
-# @client.event
-# async def on_ready() -> None:
-#     await client.change_presence(status=discord.Status.online, activity=discord.CustomActivity(name="Gemini 1.5 Proを実行中"))
-#     print("PRESENCE UPDATED")
-#     print(model_data.get_prompt_default())
