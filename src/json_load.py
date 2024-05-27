@@ -56,6 +56,7 @@ class JsonLoader:
 
 class jsonLoad(JsonLoader):
     def __init__(self) -> None:
+        """コマンドのデータ(主にEmbed)をロードします。"""
         super().__init__("json/command.json")
 
     def __embed_formater(self, embed: dict) -> dict:
@@ -88,7 +89,7 @@ class jsonLoad(JsonLoader):
             return None
 
     def get_command_embed(self, command: str) -> dict | None:
-        """コマンドで使用されているEmnedを取得する。
+        """コマンドで使用されているEmnedを取得します。
 
         Args:
             command (str): Command name
@@ -97,28 +98,30 @@ class jsonLoad(JsonLoader):
         """
         return self.__embed_formater(self.load_json(self.__get_command(command, "embed")))
 
-    # def get_command_value(self, command:str) -> dict:
-    #     return self.__get_command(command, "value")
-
 
 class ModelLoad(JsonLoader):
     def __init__(self) -> None:
+        """Geminiのモデルデータをロードします。"""
         super().__init__("json/model.json")
 
     def __get(self, key: str) -> str | None:
+        # TODO: 関数名そのうち変更する。
+        """指定されたキーに対応する値を取得します。"""
         try:
             return str(self.data[key])
         except KeyError:
             return None
 
     def __get_prompt(self, key: str) -> str | None:
+        """Geminiに与えるプロンプトのデータを取得します。"""
         try:
             return str(self.data["prompts"][key])
         except KeyError:
             return None
 
     def get_name(self) -> str:
-        """Get the user-friendly name of the model.
+        """モデルのユーザーフレンドリーな名前(「Gemini 1.5 Pro」みたいな)を取得します。
+        これはユーザーに表示されるモデルのわかりやすい名称です。
 
         Returns:
             str: Model name
@@ -126,7 +129,8 @@ class ModelLoad(JsonLoader):
         return str(self.__get("name"))
 
     def get_model_name(self) -> str:
-        """Get the technical name of the model.
+        """モデルの技術的な名前(「gemini-1.5-pro-latest」みたいな)を取得します。
+        これは内部処理で使用されるモデルの名称で、ユーザーには表示されません。
 
         Returns:
             str: Model name
@@ -134,7 +138,7 @@ class ModelLoad(JsonLoader):
         return str(self.__get("model_name"))
 
     def get_icon(self) -> str:
-        """Get the URL of the model's icon.
+        """モデルアイコンのURLを取得します。
 
         Returns:
             str: Model's icon URL
@@ -142,6 +146,7 @@ class ModelLoad(JsonLoader):
         return str(self.__get("icon"))
 
     def get_prompt_default(self) -> str:
+        """デフォルトのプロンプトを取得します。"""
         return str(self.__get_prompt("default"))
 
 
