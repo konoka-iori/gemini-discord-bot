@@ -12,8 +12,7 @@ class GitHubLinkView(discord.ui.View):
 
 
 class AboutCog(commands.Cog):
-    def __init__(self, bot: commands.Bot) -> None:
-        self.bot = bot
+    def __init__(self) -> None:
         self.command_data = jsonLoad()
 
     @commands.Cog.listener()
@@ -28,4 +27,4 @@ class AboutCog(commands.Cog):
 
 
 async def setup(bot: commands.Bot) -> None:
-    await bot.add_cog(AboutCog(bot))
+    await bot.add_cog(AboutCog())
