@@ -14,6 +14,8 @@ async def main() -> None:
     # .envファイルの検証
     if config["DISCORD_BOT_TOKEN"] is None:
         raise ValueError("DISCORD_BOT_TOKEN is not found in .env file")
+    if config["GEMINI_API_KEY"] is None:
+        raise ValueError("GEMINI_API_KEY is not found in .env file")
     if config["DISCORD_SERVER_ID"] is None:
         raise ValueError("DISCORD_SERVER_ID is not found in .env file")
 
