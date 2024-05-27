@@ -3,23 +3,19 @@ from time import time
 
 import discord
 from discord.ext import commands
-from dotenv import dotenv_values
 
 from chat import Chat
 from json_load import ModelLoad
 
 
 class ChatCog(commands.Cog):
-    def __init__(self, bot: commands.Bot) -> None:
+    def __init__(self, bot: commands.Bot, gemini_api_key: str) -> None:
         self.bot = bot
         self.model_data = ModelLoad()
+        self.__GEMINI_API_KEY = gemini_api_key
 
-        config = dotenv_values('./.env')
-        if config["GEMINI_API_KEY"] is None:
-            raise ValueError("GEMINI_API_KEY is not found in .env file")
-
-        self.chat_data = Chat(token=config["GEMINI_API_KEY"],
-                              model=self.model_data.get_model_name(), default_prompt=self.model_data.get_prompt_default())
+        self.chat_data = Chat(token=self.__GEMINI_API_KEY, model=self.model_data.get_model_name(),
+                              default_prompt=self.model_data.get_prompt_default())
 
     def generate_chat_embed(self, ctx: discord.interactions.Interaction, message: str) -> tuple[discord.Embed, discord.Embed]:
         """チャットコマンドで使用するEmbedを生成します。
@@ -56,6 +52,7 @@ class ChatCog(commands.Cog):
             await ctx.response.defer(thinking=True)
             await ctx.followup.send(embeds=self.generate_chat_embed(ctx=ctx, message=message))
 
+    # FIXME: コンテキストメニューはエラーが出るので一旦コメントアウトして機能を停止！
     # @discord.app_commands.context_menu(name="Gemini replies to message")
     # async def callback_reply(self, ctx: discord.interactions.Interaction, message: discord.Message) -> None:
     #     async with ctx.channel.typing():
@@ -77,4 +74,4 @@ class ChatCog(commands.Cog):
 
 
 async def setup(bot: commands.Bot) -> None:
-    await bot.add_cog(ChatCog(bot))
+    await bot.add_cog(ChatCog(bot=bot, gemini_api_key=bot.gemini_api_key))

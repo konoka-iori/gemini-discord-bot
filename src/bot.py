@@ -24,6 +24,7 @@ async def main() -> None:
 
     # Botを作成
     bot = commands.Bot(command_prefix="/", intents=discord.Intents.default())
+    bot.gemini_api_key = GEMINI_API_KEY  # NOTE:この方法どうなのかな？もっと良い方法があれば変えたい。
 
     @bot.event
     async def setup_hook() -> None:
