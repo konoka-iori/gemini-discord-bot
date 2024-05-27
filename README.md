@@ -14,11 +14,13 @@ Gemini APIを使ったDiscordのチャットボット作ってみたいよとい
 - `/ping`: BOTの生存確認を行い、応答速度を表示します。
 - `/chat`: Geminiとチャットができます。一問一答方式で、会話履歴はBOT側で保存されません。
 
-## コンテキストメニュー
+## ~~コンテキストメニュー~~
 
-メッセージを右クリックされると表示されるメニューから「アプリ」を選択すると以下のコマンドが表示され、対応するBOTの機能を利用できます。
+~~メッセージを右クリックされると表示されるメニューから「アプリ」を選択すると以下のコマンドが表示され、対応するBOTの機能を利用できます。~~
 
-- `Gemini replies to message`: すでに送信されているメッセージを選択してこのコマンドを使用すると、選択されたメッセージにBOTが返信します。一問一答形式で、会話はBOT側で保存されません。
+- ~~`Gemini replies to message`: すでに送信されているメッセージを選択してこのコマンドを使用すると、選択されたメッセージにBOTが返信します。一問一答形式で、会話はBOT側で保存されません。~~
+
+この機能はCogs移行に伴い停止されています。将来的に復活する可能性はありますが、しばらくの間利用できませんのでご了承ください。
 
 # インストール方法
 
@@ -102,3 +104,14 @@ BOT PERMISSIONS / TEXT PERMISSIONS:
   - 不具合修正（グローバルコマンドが正常に同期されない問題を修正）
   - コードのリファクタリング
   - ドキュメント修正（botの権限設定を追加）
+- [2.3](https://github.com/konoka-iori/gemini-discord-bot/pull/30):
+  - `/about` のレスポンスにこのリポジトリへのGitHubリンクを追加
+  - 不具合修正 [#22](https://github.com/konoka-iori/gemini-discord-bot/issues/22)
+  - README.mdに `/ping` の説明を追加 [#23](https://github.com/konoka-iori/gemini-discord-bot/issues/23)
+  - ドキュメントの可読性向上（注意書き `CAUTION` を追加）
+  - 不具合修正（レイテンシ計算を修正）
+  - コードの可読性の向上（PEP8の適用、DocStringの拡充など）
+  - Gemini APIの system_instruction メソッドに対応 [#18](https://github.com/konoka-iori/gemini-discord-bot/issues/18)
+  - 不具合修正（ `.env` が正常に読み込まれない問題を修正）
+  - Cogsに移行と大規模なリファクタリング
+  - 依存関係を更新
