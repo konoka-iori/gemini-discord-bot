@@ -111,7 +111,7 @@ BOT PERMISSIONS / TEXT PERMISSIONS:
   - ドキュメントの可読性向上（注意書き `CAUTION` を追加）
   - 不具合修正（レイテンシ計算を修正）
   - コードの可読性の向上（PEP8の適用、DocStringの拡充など）
-  - Gemini APIの system_instruction メソッドに対応 [#18](https://github.com/konoka-iori/gemini-discord-bot/issues/18)
+  - Gemini APIの `system_instruction` メソッドに対応 [#18](https://github.com/konoka-iori/gemini-discord-bot/issues/18)
   - 不具合修正（ `.env` が正常に読み込まれない問題を修正）
   - Cogsに移行と大規模なリファクタリング
   - 依存関係を更新
