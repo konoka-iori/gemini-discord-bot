@@ -12,9 +12,8 @@ class ChatCog(commands.Cog):
     def __init__(self, bot: commands.Bot, gemini_api_key: str) -> None:
         self.bot = bot
         self.model_data = ModelLoad()
-        self.__GEMINI_API_KEY = gemini_api_key
 
-        self.chat_data = Chat(token=self.__GEMINI_API_KEY, model=self.model_data.get_model_name(),
+        self.chat_data = Chat(token=gemini_api_key, model=self.model_data.get_model_name(),
                               default_prompt=self.model_data.get_prompt_default())
 
     def generate_chat_embed(self, ctx: discord.interactions.Interaction, message: str) -> tuple[discord.Embed, discord.Embed]:
