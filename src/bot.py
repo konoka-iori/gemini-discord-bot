@@ -8,21 +8,21 @@ from dotenv import dotenv_values
 
 
 async def main() -> None:
-    """.envファイルから設定を読み込み、ボットを初期化して起動します。"""
+    """.envファイルから設定を読み込み、BOTを初期化して起動します。"""
 
-    config = dotenv_values('./.env')  # .envファイルを読み込む
-    # .envファイルの検証
-    if config["DISCORD_BOT_TOKEN"] is None:
-        raise ValueError("DISCORD_BOT_TOKEN is not found in .env file")
-    if config["GEMINI_API_KEY"] is None:
-        raise ValueError("GEMINI_API_KEY is not found in .env file")
-    if config["DISCORD_SERVER_ID"] is None:
-        raise ValueError("DISCORD_SERVER_ID is not found in .env file")
-
-    # .envファイルから取得した値を変数に代入
+    config = dotenv_values('./.env')
     DISCORD_BOT_TOKEN = config["DISCORD_BOT_TOKEN"]
     GEMINI_API_KEY = config["GEMINI_API_KEY"]
-    DISCORD_SERVER_ID = discord.Object(id=int(config["DISCORD_SERVER_ID"]))
+    DISCORD_SERVER_ID = config["DISCORD_SERVER_ID"]
+
+    if DISCORD_BOT_TOKEN is None:
+        raise ValueError("DISCORD_BOT_TOKEN is not found in .env file")
+    if GEMINI_API_KEY is None:
+        raise ValueError("GEMINI_API_KEY is not found in .env file")
+    if DISCORD_SERVER_ID is None:
+        raise ValueError("DISCORD_SERVER_ID is not found in .env file")
+
+    DISCORD_SERVER = discord.Object(id=int(DISCORD_SERVER_ID))
 
     # Botを作成
     bot = commands.Bot(command_prefix="/", intents=discord.Intents.default())
@@ -32,7 +32,7 @@ async def main() -> None:
     async def setup_hook() -> None:
         await bot.tree.sync()  # グローバルコマンドを同期する
         print("GLOBAL COMMANDS SYNCED")
-        await bot.tree.sync(guild=DISCORD_SERVER_ID)  # ギルドにコマンドを同期する
+        await bot.tree.sync(guild=DISCORD_SERVER)  # ギルドにコマンドを同期する
         print("COMMANDS SYNCED")
 
     @bot.event
