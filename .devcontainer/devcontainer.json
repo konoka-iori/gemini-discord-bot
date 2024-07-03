@@ -37,5 +37,10 @@
 	},
 	"containerEnv": {
 		"PIPENV_VENV_IN_PROJECT": "1"
-	}
+	},
+	"runArgs": [
+		"--name", "gemini-discord-bot",
+		"-e", "TZ=Asia/Tokyo"
+	],
+	"postCreateCommand": "pipenv sync --dev"
 }
