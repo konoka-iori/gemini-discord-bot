@@ -7,9 +7,7 @@
 	"customizations": {
 		"vscode": {
 			"settings": {
-				"[python]": {
-					"editor.defaultFormatter": "ms-python.autopep8"
-				},
+				"editor.defaultFormatter": "ms-python.autopep8",
 				"python.defaultInterpreterPath": ".venv/bin/python3.11",
 				"[markdown]": {
 					"editor.defaultFormatter": "yzhang.markdown-all-in-one"
@@ -22,13 +20,8 @@
 				}
 			},
 			"extensions": [
-				"aprilandjan.ascii-tree-generator",
 				"njpwerner.autodocstring",
-				"ms-python.autopep8",
-				"GitHub.copilot",
-				"GitHub.copilot-chat",
 				"GitHub.vscode-pull-request-github",
-				"ms-python.isort",
 				"yzhang.markdown-all-in-one",
 				"shd101wyy.markdown-preview-enhanced",
 				"DavidAnson.vscode-markdownlint",
@@ -36,6 +29,8 @@
 				"ms-python.vscode-pylance",
 				"ms-python.python",
 				"ms-python.debugpy",
+				"ms-python.autopep8",
+				"ms-python.isort",
 				"Gruntfuggly.todo-tree"
 			]
 		}
