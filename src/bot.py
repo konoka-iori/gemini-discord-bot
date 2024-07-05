@@ -10,7 +10,7 @@ from dotenv import dotenv_values
 async def main() -> None:
     """.envファイルから設定を読み込み、BOTを初期化して起動します。"""
 
-    config = dotenv_values('./.env')
+    config = dotenv_values("./.env")
     DISCORD_BOT_TOKEN = config.get("DISCORD_BOT_TOKEN")
     GEMINI_API_KEY = config.get("GEMINI_API_KEY")
     DISCORD_SERVER_ID = config.get("DISCORD_SERVER_ID")
