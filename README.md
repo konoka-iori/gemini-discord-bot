@@ -20,7 +20,9 @@ Gemini APIを使ったDiscordのチャットボット作ってみたいよとい
 
 - ~~`Gemini replies to message`: すでに送信されているメッセージを選択してこのコマンドを使用すると、選択されたメッセージにBOTが返信します。一問一答形式で、会話はBOT側で保存されません。~~
 
-この機能はCogs移行に伴い停止されています。将来的に復活する可能性はありますが、しばらくの間利用できませんのでご了承ください。
+> [!WARNING]
+> この機能はCogs移行に伴い停止されています
+> 将来的に復活する可能性はありますが、しばらくの間利用できませんのでご了承ください。
 
 # インストール方法
 
@@ -28,10 +30,9 @@ Gemini APIを使ったDiscordのチャットボット作ってみたいよとい
 2. `.env.sample` を `.env` にリネームします。
 3. `.env` の `DISCORD_TOKEN` にDiscordのBOTのトークンを入力します。
 4. `.env` の `GEMINI_API_KEY` にGeminiのAPI Keyを入力します。
-5. `.env` の `DISCORD_SERVER_ID` にBOTを使用したいDiscordサーバーのIDを入力します。
-6. `pipenv install` を実行します。（pipenvを使わない場合は `pip install -r Requirements.txt` など。）
-7. `pipenv run bot.py` を実行します。（pipenvを使わない場合は `python bot.py` など。）
-8. コマンドラインに `COMMAND SYNCED` と表示され、BOTがオンラインになったらDiscordで `/about` と入力してみましょう！( `/chat` も動くはず！)
+5. `pipenv install` を実行します。（pipenvを使わない場合は `pip install -r Requirements.txt` など。）
+6. `pipenv run bot.py` を実行します。（pipenvを使わない場合は `python bot.py` など。）
+7. コマンドラインに `COMMAND SYNCED` と表示され、BOTがオンラインになったらDiscordで `/about` と入力してみましょう！( `/chat` も動くはず！)
 
 > [!CAUTION]
 > **使用するときは必ず `.env.sample` を `.env` にリネームしてください。**
