@@ -18,7 +18,9 @@ class Chat:
         Returns:
             tuple[str, float]: [0]: Gemini response, [1]: Processing time. Unit: ms
         """
-        prompt = self.__default_prompt if prompt == "" else prompt  # promptが空の場合はデフォルトのpromptを使用する。この処理がないとsystem_instructionが空になってエラーでる。
+        # promptが空の場合はデフォルトのpromptを使用する。この処理がないとsystem_instructionが空になってエラーでる。
+        if prompt == "":
+            prompt = self.__default_prompt
         try:
             gemini.configure(api_key=self.__token)
             config = {"max_output_tokens": 1000}
