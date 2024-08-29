@@ -147,7 +147,10 @@ class ModelLoad(JsonLoader):
 
     def get_prompt_default(self) -> str:
         """デフォルトのプロンプトを取得します。"""
-        return str(self.__get_prompt("default"))
+        default_prompt = self.__get_prompt("default")
+        if default_prompt is None or default_prompt.strip() == "":
+            default_prompt = "You, as a chatbot, respond to the following statement."
+        return str(default_prompt)
 
 
 if __name__ == "__main__":
