@@ -4,8 +4,7 @@ FROM python:3.11
 RUN apt update && \
     apt upgrade -y && \
     apt install -y python3-pip && \
-    apt clean && \
-    rm -rf /var/lib/apt/lists/*
+    apt clean && rm -rf /var/lib/apt/lists/*
 
 # ユーザーを作成
 RUN useradd -m gemini-discord-bot
