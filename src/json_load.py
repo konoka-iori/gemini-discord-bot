@@ -89,7 +89,7 @@ class jsonLoad(JsonLoader):
             return None
 
     def get_command_embed(self, command: str) -> dict | None:
-        """コマンドで使用されているEmnedを取得します。
+        """コマンドで使用されているEmbedを取得します。
 
         Args:
             command (str): Command name
