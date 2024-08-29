@@ -126,6 +126,9 @@ class ModelLoad(JsonLoader):
         Returns:
             str: Model name
         """
+        name = self.__get("name")
+        if name is None or name.strip() == "":
+            name = "Gemini 1.5 Pro"
         return str(self.__get("name"))
 
     def get_model_name(self) -> str:
@@ -135,6 +138,9 @@ class ModelLoad(JsonLoader):
         Returns:
             str: Model name
         """
+        model_name = self.__get("model_name")
+        if model_name is None or model_name.strip() == "":
+            model_name = "gemini-1.5-pro-latest"
         return str(self.__get("model_name"))
 
     def get_icon(self) -> str:
