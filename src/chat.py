@@ -1,3 +1,4 @@
+import logging
 from time import time
 
 import google.generativeai as gemini
@@ -8,6 +9,7 @@ class Chat:
         self.__token = token
         self.__model = model
         self.__default_prompt = default_prompt
+        self.__logger = logging.getLogger("chat")
 
     def get_response(self, message: str, prompt: str = "") -> tuple[str, float]:
         """Gemini APIからの応答を取得します。
@@ -32,6 +34,7 @@ class Chat:
             end_s = time()
             return str(response.text), float((end_s - start_s) * 1000)
         except Exception as e:
+            self.__logger.error(f"{e}")
             return f"エラーが発生しました。以下の内容をコピペして管理者までお知らせください。\n```{e}```", float(0)
 
     def ping(self) -> str:
