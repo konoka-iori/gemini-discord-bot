@@ -1,0 +1,71 @@
+name: バグ報告用のテンプレート
+description: ほぼすべてのバグ報告に使えるテンプレートです。
+title: "[Bug]: "
+labels: ["bug"]
+assignees:
+  - konoka-iori
+body:
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: 不具合の概要
+      description: これはどのような不具合ですか？
+      placeholder: ex. BOTがメッセージを送信できない
+    validations:
+      required: true
+
+  - type: dropdown
+    id: branch
+    attributes:
+      label: 不具合が発生しているブランチ
+      description: どのブランチでこの不具合が発生しましたか？
+      options:
+        - main
+        - develop
+        - other
+    validations:
+      required: true
+  - type: input
+    id: other-branch
+    attributes:
+      label: その他のブランチ名
+      description: どのブランチでこの不具合が発生しましたか？
+      placeholder: ex. add/new-feature
+    validations:
+      required: false
+
+  - type: input
+    id: where
+    attributes:
+      label: 不具合の発生箇所
+      description: どこでこの不具合が発生しましたか？
+      placeholder: ex. ファイル名、URL、コマンド
+
+  - type: textarea
+    id: how-to-reproduce
+    attributes:
+      label: 再現手順
+      description: この不具合を再現するための手順を教えてください。
+      placeholder: ex. 1. Dockerを実行してBOTを起動 2. `/ping` を実行
+    validations:
+      required: true
+
+  - type: textarea
+    id: logs
+    attributes:
+      label: 実行ログ
+      description: ログファイル `log/(実行日時).log` の内容すべてをそのまま貼り付けてください。
+      render: log
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: checked
+    attributes:
+      label: 確認項目
+      description: 報告する前に、以下のチェック項目を確認してください。
+      options:
+        - label: 不具合が発生しているブランチの最新の変更を取り込んだ上で発生するエラーです。
+          required: true
+        - label: この不具合はまだ報告されていません。
+          required: true
