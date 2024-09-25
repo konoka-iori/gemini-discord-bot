@@ -31,7 +31,11 @@ Gemini APIを使ったDiscordのチャットボット作ってみたいよとい
 2. `.env.sample` を `.env` にリネームします。
 3. `.env` の `DISCORD_TOKEN` にDiscordのBOTのトークンを入力します。
 4. `.env` の `GEMINI_API_KEY` にGeminiのAPI Keyを入力します。
-5. `docker-compose -f .\.devcontainer\docker-compose.yml up -d` を実行します。
+5. 以下のコマンドを実行し、コンテナを起動します。
+
+```shell
+docker-compose -f .\.devcontainer\docker-compose.yml up -d
+```
 
 > [!CAUTION]
 > **使用するときは必ず `.env.sample` を `.env` にリネームしてください。**
