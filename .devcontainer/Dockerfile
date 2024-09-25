@@ -1,10 +1,4 @@
-FROM python:3.11
-
-# apt updateしてpipをインストール
-RUN apt update && \
-    apt upgrade -y && \
-    apt install -y python3-pip && \
-    apt clean && rm -rf /var/lib/apt/lists/*
+FROM python:3.11-slim
 
 # ユーザーを作成
 RUN useradd -m gemini-discord-bot
@@ -15,11 +9,15 @@ WORKDIR /home/gemini-discord-bot
 # ユーザーを切り替える
 USER gemini-discord-bot
 
-COPY . /home/gemini-discord-bot
+# requirements.txtを先にコピーしてpip installを実行
+COPY requirements.txt /home/gemini-discord-bot/requirements.txt
 
 # pipで必要なパッケージをインストール
 RUN pip install --upgrade pip && \
-    pip install -r requirements.txt
+    pip install -r /home/gemini-discord-bot/requirements.txt
+
+# 残りのファイルをコピー
+COPY . /home/gemini-discord-bot
 
 # コンテナ起動時に実行するコマンドを指定
 CMD ["python", "src/bot.py"]

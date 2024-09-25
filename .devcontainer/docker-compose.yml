@@ -1,4 +1,3 @@
-version: '3'
 services:
   gemini-discord-bot:
     container_name: gemini-discord-bot
@@ -6,3 +5,5 @@ services:
     build:
       context: ..
       dockerfile: .devcontainer/Dockerfile
+    volumes:
+      - ..:/app
