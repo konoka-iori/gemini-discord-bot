@@ -1,5 +1,8 @@
 FROM python:3.11-slim
 
+# タイムゾーンをJSTに設定
+ENV TZ Asia/Tokyo
+
 # ユーザーを作成
 RUN useradd -m gemini-discord-bot
 
