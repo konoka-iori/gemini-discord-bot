@@ -6,4 +6,4 @@ services:
       context: ..
       dockerfile: .devcontainer/Dockerfile
     volumes:
-      - ..:/app
+      - ..:/home/gemini-discord-bot

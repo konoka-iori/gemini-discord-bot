@@ -6,9 +6,6 @@ RUN useradd -m gemini-discord-bot
 # ワーキングディレクトリを指定
 WORKDIR /home/gemini-discord-bot
 
-# ユーザーを切り替える
-USER gemini-discord-bot
-
 # requirements.txtを先にコピーしてpip installを実行
 COPY requirements.txt /home/gemini-discord-bot/requirements.txt
 
@@ -18,6 +15,9 @@ RUN pip install --upgrade pip && \
 
 # 残りのファイルをコピー
 COPY . /home/gemini-discord-bot
+
+# ユーザーを切り替える
+USER gemini-discord-bot
 
 # コンテナ起動時に実行するコマンドを指定
 CMD ["python", "src/bot.py"]
