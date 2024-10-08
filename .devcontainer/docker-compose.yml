@@ -1,0 +1,9 @@
+services:
+  gemini-discord-bot:
+    container_name: gemini-discord-bot
+    image: gemini-discord-bot
+    build:
+      context: ..
+      dockerfile: .devcontainer/Dockerfile
+    volumes:
+      - ..:/home/gemini-discord-bot

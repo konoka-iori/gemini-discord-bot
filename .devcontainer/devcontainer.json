@@ -1,0 +1,46 @@
+{
+	"name": "gemini-discord-bot",
+	"image": "mcr.microsoft.com/devcontainers/python:1-3.11-bullseye",
+	"features": {
+		"ghcr.io/devcontainers-contrib/features/pipenv:2": {}
+	},
+	"customizations": {
+		"vscode": {
+			"settings": {
+				"editor.defaultFormatter": "ms-python.autopep8",
+				"python.defaultInterpreterPath": ".venv/bin/python3.11",
+				"[markdown]": {
+					"editor.defaultFormatter": "yzhang.markdown-all-in-one"
+				},
+				"markdownlint.config": {
+					"MD013": false,
+					"MD025": false,
+					"MD033": false,
+					"MD024": false
+				}
+			},
+			"extensions": [
+				"njpwerner.autodocstring",
+				"GitHub.vscode-pull-request-github",
+				"yzhang.markdown-all-in-one",
+				"shd101wyy.markdown-preview-enhanced",
+				"DavidAnson.vscode-markdownlint",
+				"ms-python.mypy-type-checker",
+				"ms-python.vscode-pylance",
+				"ms-python.python",
+				"ms-python.debugpy",
+				"ms-python.autopep8",
+				"ms-python.isort",
+				"Gruntfuggly.todo-tree"
+			]
+		}
+	},
+	"containerEnv": {
+		"PIPENV_VENV_IN_PROJECT": "1"
+	},
+	"runArgs": [
+		"--name", "gemini-discord-bot",
+		"-e", "TZ=Asia/Tokyo"
+	],
+	"postCreateCommand": "pipenv sync --dev"
+}

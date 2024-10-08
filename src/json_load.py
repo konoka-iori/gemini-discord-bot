@@ -1,4 +1,5 @@
 import json
+import logging
 from datetime import datetime, timezone
 
 from genericpath import isdir, isfile
@@ -13,6 +14,7 @@ class JsonLoader:
         """
         self.__json_file = file_path
         self.data = self.load_json(self.__json_file)
+        self.__logger = logging.getLogger("json_loader")
 
     def __file_check(self, json_file: str | None) -> str:
         """JSONファイルが正しい場所に存在するかチェックします。
@@ -28,13 +30,16 @@ class JsonLoader:
         """
         try:
             if not isdir("json"):
+                self.__logger.error("JSON Directory is not found.")
                 raise IsADirectoryError("JSONディレクトリがありません")
             elif json_file is None:
+                self.__logger.error("JSON_file is None.")
                 raise ValueError("JSONファイルが指定されていません")
             elif not isfile(json_file):
+                self.__logger.error(f"JSON file '{json_file}' is not found.")
                 raise FileNotFoundError("JSONファイルがありません")
         except IsADirectoryError as e:
-            print(e)
+            self.__logger.error(f"{e}")
         return str(json_file)
 
     def load_json(self, file_path: str | None) -> dict:
@@ -50,6 +55,7 @@ class JsonLoader:
         with open(self.__file_check(file_path), "r", encoding="utf-8") as jsonfile:
             data = json.load(jsonfile)
             if not isinstance(data, dict):
+                self.__logger.error("JSON file format is invalid.")
                 raise ValueError("JSONファイルの形式が正しくありません")
             return data
 
@@ -58,6 +64,7 @@ class jsonLoad(JsonLoader):
     def __init__(self) -> None:
         """コマンドのデータ(主にEmbed)をロードします。"""
         super().__init__("json/command.json")
+        self.__logger = logging.getLogger("json_loader/command_loader")
 
     def __embed_formater(self, embed: dict) -> dict:
         """カラーを16進数に変換し、タイムスタンプをISO8601形式に変換します。
@@ -86,10 +93,11 @@ class jsonLoad(JsonLoader):
         try:
             return str(self.data[command][key])
         except KeyError:
+            self.__logger.error(f"Key '{command}/{key}' not found.")
             return None
 
     def get_command_embed(self, command: str) -> dict | None:
-        """コマンドで使用されているEmnedを取得します。
+        """コマンドで使用されているEmbedを取得します。
 
         Args:
             command (str): Command name
@@ -103,6 +111,7 @@ class ModelLoad(JsonLoader):
     def __init__(self) -> None:
         """Geminiのモデルデータをロードします。"""
         super().__init__("json/model.json")
+        self.__logger = logging.getLogger("json_loader/model_loader")
 
     def __get(self, key: str) -> str | None:
         # TODO: 関数名そのうち変更する。
@@ -110,6 +119,7 @@ class ModelLoad(JsonLoader):
         try:
             return str(self.data[key])
         except KeyError:
+            self.__logger.error(f"Key '{key}' not found.")
             return None
 
     def __get_prompt(self, key: str) -> str | None:
@@ -117,6 +127,7 @@ class ModelLoad(JsonLoader):
         try:
             return str(self.data["prompts"][key])
         except KeyError:
+            self.__logger.error(f"Key '{key}' not found.")
             return None
 
     def get_name(self) -> str:
@@ -126,6 +137,10 @@ class ModelLoad(JsonLoader):
         Returns:
             str: Model name
         """
+        name = self.__get("name")
+        if name is None or name.strip() == "":
+            self.__logger.warning("Name not found. Using default value 'Gemini 1.5 Pro'.")
+            name = "Gemini 1.5 Pro"
         return str(self.__get("name"))
 
     def get_model_name(self) -> str:
@@ -135,6 +150,10 @@ class ModelLoad(JsonLoader):
         Returns:
             str: Model name
         """
+        model_name = self.__get("model_name")
+        if model_name is None or model_name.strip() == "":
+            self.__logger.warning("Model name not found. Using default value 'gemini-1.5-pro-latest'.")
+            model_name = "gemini-1.5-pro-latest"
         return str(self.__get("model_name"))
 
     def get_icon(self) -> str:
@@ -147,7 +166,11 @@ class ModelLoad(JsonLoader):
 
     def get_prompt_default(self) -> str:
         """デフォルトのプロンプトを取得します。"""
-        return str(self.__get_prompt("default"))
+        default_prompt = self.__get_prompt("default")
+        if default_prompt is None or default_prompt.strip() == "":
+            self.__logger.warning("Default prompt not found. Using default value.")
+            default_prompt = "You, as a chatbot, respond to the following statement."
+        return str(default_prompt)
 
 
 if __name__ == "__main__":

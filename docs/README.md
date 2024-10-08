@@ -20,7 +20,10 @@ Gemini APIを使ったDiscordのチャットボット作ってみたいよとい
 
 - ~~`Gemini replies to message`: すでに送信されているメッセージを選択してこのコマンドを使用すると、選択されたメッセージにBOTが返信します。一問一答形式で、会話はBOT側で保存されません。~~
 
-この機能はCogs移行に伴い停止されています。将来的に復活する可能性はありますが、しばらくの間利用できませんのでご了承ください。
+> [!WARNING]
+> この機能はCogs移行に伴い停止されています。
+>
+> 将来的に復活する可能性はありますが、しばらくの間利用できませんのでご了承ください。
 
 # インストール方法
 
@@ -28,14 +31,17 @@ Gemini APIを使ったDiscordのチャットボット作ってみたいよとい
 2. `.env.sample` を `.env` にリネームします。
 3. `.env` の `DISCORD_TOKEN` にDiscordのBOTのトークンを入力します。
 4. `.env` の `GEMINI_API_KEY` にGeminiのAPI Keyを入力します。
-5. `.env` の `DISCORD_SERVER_ID` にBOTを使用したいDiscordサーバーのIDを入力します。
-6. `pipenv install` を実行します。（pipenvを使わない場合は `pip install -r Requirements.txt` など。）
-7. `pipenv run bot.py` を実行します。（pipenvを使わない場合は `python bot.py` など。）
-8. コマンドラインに `COMMAND SYNCED` と表示され、BOTがオンラインになったらDiscordで `/about` と入力してみましょう！( `/chat` も動くはず！)
+5. 以下のコマンドを実行し、コンテナを起動します。
+
+```shell
+docker-compose -f .\.devcontainer\docker-compose.yml up -d
+```
 
 > [!CAUTION]
 > **使用するときは必ず `.env.sample` を `.env` にリネームしてください。**
+>
 > `.env` は `.gitignore` に登録されているため、GitHubにアップロードされません。
+>
 > この操作を忘れ、 `.env.sample` にAPI Keyなどの情報を入力すると正常に動作しないどころか、うっかりGitHubにアップロードするとAPI Keyなどの重要な情報が漏洩する可能性があります。必ず `.env` にリネームしてから情報を入力してください。
 
 ## Discordの権限設定
@@ -114,4 +120,12 @@ BOT PERMISSIONS / TEXT PERMISSIONS:
   - Gemini APIの `system_instruction` メソッドに対応 [#18](https://github.com/konoka-iori/gemini-discord-bot/issues/18)
   - 不具合修正（ `.env` が正常に読み込まれない問題を修正）
   - Cogsに移行と大規模なリファクタリング
+  - 依存関係を更新
+- [2.4](https://github.com/konoka-iori/gemini-discord-bot/pull/37):
+  - **Dockerに対応** [#29](https://github.com/konoka-iori/gemini-discord-bot/issues/29)
+  - 脆弱性の修正 [#32](https://github.com/konoka-iori/gemini-discord-bot/pull/32) [#34](https://github.com/konoka-iori/gemini-discord-bot/pull/34) [#36](https://github.com/konoka-iori/gemini-discord-bot/pull/36)
+  - 不具合修正 [#31](https://github.com/konoka-iori/gemini-discord-bot/issues/31)
+  - `DISCORD_SERVER_ID` が不要に [#35](https://github.com/konoka-iori/gemini-discord-bot/issues/35)
+  - 詳細なロギングに対応 [#33](https://github.com/konoka-iori/gemini-discord-bot/issues/33)
+  - 全体的なリファクタリング
   - 依存関係を更新

@@ -1,3 +1,4 @@
+import logging
 from datetime import datetime
 from time import time
 
@@ -12,10 +13,10 @@ class ChatCog(commands.Cog):
     def __init__(self, bot: commands.Bot, gemini_api_key: str) -> None:
         self.bot = bot
         self.model_data = ModelLoad()
-        self.__GEMINI_API_KEY = gemini_api_key
 
-        self.chat_data = Chat(token=self.__GEMINI_API_KEY, model=self.model_data.get_model_name(),
+        self.chat_data = Chat(token=gemini_api_key, model=self.model_data.get_model_name(),
                               default_prompt=self.model_data.get_prompt_default())
+        self.__logger = logging.getLogger("cog.chat")
 
     def generate_chat_embed(self, ctx: discord.interactions.Interaction, message: str) -> tuple[discord.Embed, discord.Embed]:
         """チャットコマンドで使用するEmbedを生成します。
@@ -44,7 +45,7 @@ class ChatCog(commands.Cog):
 
     @commands.Cog.listener()
     async def on_ready(self) -> None:
-        print("Cog: ChatCog is ready!")
+        self.__logger.info("Loaded Cog.")
 
     @discord.app_commands.command(name="chat", description="Gemini-Proと会話できます。")
     async def callback_chat(self, ctx: discord.interactions.Interaction, message: str) -> None:

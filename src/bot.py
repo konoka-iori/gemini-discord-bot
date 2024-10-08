@@ -1,5 +1,8 @@
 import asyncio
-from os import listdir
+import logging
+import logging.handlers
+from datetime import datetime
+from os import listdir, makedirs, path
 
 import discord
 import discord.app_commands
@@ -8,21 +11,33 @@ from dotenv import dotenv_values
 
 
 async def main() -> None:
-    """.envファイルから設定を読み込み、ボットを初期化して起動します。"""
+    """.envファイルから設定を読み込み、BOTを初期化して起動します。"""
 
-    config = dotenv_values('./.env')  # .envファイルを読み込む
-    # .envファイルの検証
-    if config["DISCORD_BOT_TOKEN"] is None:
+    config = dotenv_values("./.env")
+    DISCORD_BOT_TOKEN = config.get("DISCORD_BOT_TOKEN")
+    GEMINI_API_KEY = config.get("GEMINI_API_KEY")
+
+    if DISCORD_BOT_TOKEN is None:
         raise ValueError("DISCORD_BOT_TOKEN is not found in .env file")
-    if config["GEMINI_API_KEY"] is None:
+    if GEMINI_API_KEY is None:
         raise ValueError("GEMINI_API_KEY is not found in .env file")
-    if config["DISCORD_SERVER_ID"] is None:
-        raise ValueError("DISCORD_SERVER_ID is not found in .env file")
 
-    # .envファイルから取得した値を変数に代入
-    DISCORD_BOT_TOKEN = config["DISCORD_BOT_TOKEN"]
-    GEMINI_API_KEY = config["GEMINI_API_KEY"]
-    DISCORD_SERVER_ID = discord.Object(id=int(config["DISCORD_SERVER_ID"]))
+    # ログの設定
+    LOG_DIR = "log/"
+    if not path.exists(LOG_DIR): # logディレクトリがないときに作成
+        makedirs(LOG_DIR)
+    handler = logging.handlers.RotatingFileHandler(
+        filename=f"{LOG_DIR}/{datetime.now().strftime('%Y-%m-%d_%H-%M-%S')}.log",
+        encoding="utf-8",
+        mode="w",
+    )
+    logging.basicConfig(level=logging.INFO, handlers=[handler],
+                        format="{asctime} {levelname} {name}: {message}",
+                        style="{", datefmt="%Y-%m-%d %H:%M:%S")
+
+    # ロガーの定義
+    logger = logging.getLogger("bot")
+    logger.setLevel(logging.INFO)
 
     # Botを作成
     bot = commands.Bot(command_prefix="/", intents=discord.Intents.default())
@@ -31,15 +46,14 @@ async def main() -> None:
     @bot.event
     async def setup_hook() -> None:
         await bot.tree.sync()  # グローバルコマンドを同期する
-        print("GLOBAL COMMANDS SYNCED")
-        await bot.tree.sync(guild=DISCORD_SERVER_ID)  # ギルドにコマンドを同期する
-        print("COMMANDS SYNCED")
+        logger.info("GLOBAL COMMANDS SYNCED.")
 
     @bot.event
     async def on_ready() -> None:
-        print(f"LOGGED IN: {bot.user.name}")
+        logger.info(f"LOGGED IN -> {bot.user.name}")
         await bot.change_presence(status=discord.Status.online, activity=discord.CustomActivity(name="Gemini 1.5 Proを実行中"))
-        print("PRESENCE UPDATED")
+        logger.info("PRESENCE UPDATED.")
+        print(f"LOGGED IN: {bot.user.name}")
 
     asyncio.gather(*[bot.load_extension(f"cogs.{cog[:-3]}")
                    for cog in listdir("src/cogs") if cog.endswith(".py")])
