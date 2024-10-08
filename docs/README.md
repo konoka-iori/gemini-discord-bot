@@ -121,3 +121,11 @@ BOT PERMISSIONS / TEXT PERMISSIONS:
   - 不具合修正（ `.env` が正常に読み込まれない問題を修正）
   - Cogsに移行と大規模なリファクタリング
   - 依存関係を更新
+- [2.4](https://github.com/konoka-iori/gemini-discord-bot/pull/37):
+  - **Dockerに対応** [#29](https://github.com/konoka-iori/gemini-discord-bot/issues/29)
+  - 脆弱性の修正 [#32](https://github.com/konoka-iori/gemini-discord-bot/pull/32) [#34](https://github.com/konoka-iori/gemini-discord-bot/pull/34) [#36](https://github.com/konoka-iori/gemini-discord-bot/pull/36)
+  - 不具合修正 [#31](https://github.com/konoka-iori/gemini-discord-bot/issues/31)
+  - `DISCORD_SERVER_ID` が不要に [#35](https://github.com/konoka-iori/gemini-discord-bot/issues/35)
+  - 詳細なロギングに対応 [#33](https://github.com/konoka-iori/gemini-discord-bot/issues/33)
+  - 全体的なリファクタリング
+  - 依存関係を更新
