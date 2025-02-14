@@ -30,18 +30,17 @@ class AboutCog(commands.Cog):
 
     @discord.app_commands.command(name="about", description="BOTの説明を表示します。")
     async def command_about(self, ctx: discord.interactions.Interaction) -> None:
-        async with ctx.channel.typing():
-            await ctx.response.defer(thinking=True)
-            try:
-                embed_dict = self.command_data.get_command_embed("about")
-                if embed_dict is None:
-                    self.__logger.error("embed_dict is None.")
-                    await ctx.followup.send("エラーが発生しました。以下の内容をコピペして管理者までお知らせください。\n```/aboutのEmbedを取得できませんでした。```")
-                else:
-                    await ctx.followup.send(embed=discord.Embed.from_dict(embed_dict), view=GitHubLinkView())
-            except Exception as e:
-                self.__logger.error(f"{e}")
-                await ctx.followup.send(f"エラーが発生しました。以下の内容をコピペして管理者までお知らせください。\n```{e}```")
+        await ctx.response.defer(thinking=True)
+        try:
+            embed_dict = self.command_data.get_command_embed("about")
+            if embed_dict is None:
+                self.__logger.error("embed_dict is None.")
+                await ctx.followup.send("エラーが発生しました。以下の内容をコピペして管理者までお知らせください。\n```/aboutのEmbedを取得できませんでした。```")
+            else:
+                await ctx.followup.send(embed=discord.Embed.from_dict(embed_dict), view=GitHubLinkView())
+        except Exception as e:
+            self.__logger.error(f"{e}")
+            await ctx.followup.send(f"エラーが発生しました。以下の内容をコピペして管理者までお知らせください。\n```{e}```")
 
 
 async def setup(bot: commands.Bot) -> None:

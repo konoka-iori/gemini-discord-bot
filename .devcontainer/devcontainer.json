@@ -7,6 +7,9 @@
 	"customizations": {
 		"vscode": {
 			"settings": {
+				"files.trimFinalNewlines": true,
+				"files.trimTrailingWhitespace": true,
+				"files.insertFinalNewline": true,
 				"editor.defaultFormatter": "ms-python.autopep8",
 				"python.defaultInterpreterPath": ".venv/bin/python3.11",
 				"[markdown]": {

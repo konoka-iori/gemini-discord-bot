@@ -41,7 +41,8 @@ async def main() -> None:
 
     # Botを作成
     bot = commands.Bot(command_prefix="/", intents=discord.Intents.default())
-    bot.gemini_api_key = GEMINI_API_KEY  # NOTE:この方法どうなのかな？もっと良い方法があれば変えたい。
+    bot.gemini_api_key = GEMINI_API_KEY #type: ignore
+    # NOTE: もっと良い方法があれば変えたい。
 
     @bot.event
     async def setup_hook() -> None:
@@ -50,10 +51,16 @@ async def main() -> None:
 
     @bot.event
     async def on_ready() -> None:
-        logger.info(f"LOGGED IN -> {bot.user.name}")
-        await bot.change_presence(status=discord.Status.online, activity=discord.CustomActivity(name="Gemini 1.5 Proを実行中"))
+        if bot.user is None:
+            logger.error("LOGGED IN -> User is None")
+        else:
+            logger.info(f"LOGGED IN -> {bot.user.name}")
+
+        await bot.change_presence(status=discord.Status.online, activity=discord.CustomActivity(name="/chat で会話をはじめる"))
         logger.info("PRESENCE UPDATED.")
-        print(f"LOGGED IN: {bot.user.name}")
+
+        if bot.user is not None:
+            print(f"LOGGED IN: {bot.user.name}")
 
     asyncio.gather(*[bot.load_extension(f"cogs.{cog[:-3]}")
                    for cog in listdir("src/cogs") if cog.endswith(".py")])
