@@ -25,7 +25,7 @@ class Chat:
             prompt = self.__default_prompt
         try:
             gemini.configure(api_key=self.__token)
-            config = {"max_output_tokens": 1000}
+            config = gemini.GenerationConfig(max_output_tokens=1000)
             model = gemini.GenerativeModel(
                 system_instruction=prompt,
                 model_name=self.__model, generation_config=config)
@@ -53,7 +53,7 @@ class Chat:
 if __name__ == "__main__":
     from os import getenv
     chat = Chat(token=getenv("GEMINI_API_KEY"),  # type: ignore
-                model="gemini-1.5-pro-latest", default_prompt="次の文章に回答してください。")
+                model="gemini-2.0-flash", default_prompt="次の文章に回答してください。")
     test_response = chat.get_response("自己紹介してください。")
     print(test_response[0] + f"\n処理時間: {test_response[1]}")
     print(chat.ping())
