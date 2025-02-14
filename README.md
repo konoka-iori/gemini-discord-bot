@@ -2,7 +2,7 @@
 
 これは簡易的なDiscordチャットボットです。Geminiとの会話機能が実装されています。
 [@konoka-iori](https://github.com/konoka-iori) が個人的に使用するために作成されました。主に小規模なDiscordサーバーでの利用を想定しています。
-Gemini APIを使ったDiscordのチャットボット作ってみたいよという人はぜひ参考にしてみてくださいね。
+Gemini APIを使ったDiscordのチャットボット作ってみたいよという方への参考になれば幸いです。
 
 # 機能一覧と使い方
 
@@ -128,4 +128,9 @@ BOT PERMISSIONS / TEXT PERMISSIONS:
   - `DISCORD_SERVER_ID` が不要に [#35](https://github.com/konoka-iori/gemini-discord-bot/issues/35)
   - 詳細なロギングに対応 [#33](https://github.com/konoka-iori/gemini-discord-bot/issues/33)
   - 全体的なリファクタリング
+  - 依存関係を更新
+- [2.5](https://github.com/konoka-iori/gemini-discord-bot/pull/41)
+  - **Gemini 2.0 Flashに対応** [#39](https://github.com/konoka-iori/gemini-discord-bot/issues/39)
+  - 脆弱性の修正 [#38](https://github.com/konoka-iori/gemini-discord-bot/pull/38)
+  - 全体的なリファクタリングとエラー処理の改善
   - 依存関係を更新
